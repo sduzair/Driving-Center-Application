@@ -12,8 +12,7 @@ const flash = require( "connect-flash" )
 // ! comment this line for dev env variables before deployment 
 require( "dotenv" ).config()
 
-const ONE_DAY = 1000 * 60 * 60 * 24
-const {
+module.exports = {
   PORT = 4000,
   NODE_ENV = 'development',
   DB_USERNAME,
@@ -21,7 +20,8 @@ const {
 
   SESS_NAME = 'sid',
   SESSION_SECRET,
-  SESS_LIFETIME = ONE_DAY,
+  SESS_LIFETIME = 86400,
+  BCRYPT_SALT_ROUNDS = 10
 } = process.env
 
 const IN_PROD = NODE_ENV === 'production'
@@ -67,7 +67,7 @@ app.use(
     saveUninitialized: false,
     secret: SESSION_SECRET,
     cookie: {
-      maxAge: SESS_LIFETIME,
+      maxAge: parseInt(SESS_LIFETIME),
       sameSite: true,
       secure: false,
     },
@@ -150,5 +150,6 @@ app.use( ( req, res ) => res.render( 'notfound' ) )
 
 app.listen( PORT, () => {
   console.log( `Listening on port: ${ PORT }` )
-} )
+  if (NODE_ENV == 'development') console.log(`Server running on localhost:${ PORT }`)
+})
 

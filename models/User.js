@@ -32,7 +32,7 @@ UserSchema.plugin( uniqueValidator )
 UserSchema.pre( "save", function( next ) {
   const user = this
 
-  bcrypt.hash( user.password, 10, ( error, hash ) => {
+  bcrypt.hash( user.password, parseInt(process.env.BCRYPT_SALT_ROUNDS), ( error, hash ) => {
     user.password = hash
     next()
   } )

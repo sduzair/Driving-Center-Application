@@ -1,8 +1,9 @@
 {
-  "name": "assignment-1",
+  "name": "driving-test-center-application-project",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "module": "commonjs",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon index.js"
@@ -10,7 +11,7 @@
   "author": "8796155 Uzair Ahmed Syed",
   "license": "ISC",
   "engines": {
-    "node": "16.13.1"
+    "node": ">=18.12.0"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",

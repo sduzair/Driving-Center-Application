@@ -95,7 +95,7 @@ const DriverSchema = new mongoose.Schema( {
 
 DriverSchema.pre( "save", function( next ) {
   const driver = this
-  bcrypt.hash( driver.carLicenceNumber, 10, ( error, hash ) => {
+  bcrypt.hash( driver.carLicenceNumber, parseInt(process.env.BCRYPT_SALT_ROUNDS), ( error, hash ) => {
     driver.carLicenceNumber = hash
     next()
   } )
