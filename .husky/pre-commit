@@ -1,0 +1,3 @@
+npx biome check --write $(git diff --cached --name-only --diff-filter=ACMR | sed 's| |\\ |g') --files-ignore-unknown=true --no-errors-on-unmatched
+npx prettier --write  $(git diff --cached --name-only --diff-filter=ACMR | sed 's| |\\ |g') --ignore-unknown --ignore-path .prettierignore
+git update-index --again

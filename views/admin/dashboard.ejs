@@ -1,99 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
-<%- include ('../layouts/header'); -%>
+  <%- include ('../layouts/header'); -%>
 
-<body>
-  <!-- Navigation-->
-  <%- include ('../layouts/nav'); -%>
-  <!-- Page Header-->
-  <header class="masthead"
-    style="background-image: url('/assets/mastheadImages/towfiqu-barbhuiya-bwOAixLG0uc-unsplash.jpg');">
-    <div class="container position-relative px-8 px-lg-8">
-      <div class="row gx-6 gx-lg-8 justify-content-center">
-        <div class="col-md-10 col-lg-10 col-xl-10">
-          <div class="site-heading">
-            <h1>Welcome to Admin Dashboard</h1>
-            <!-- <span class="subheading">Create an appointment</span> -->
+  <body>
+    <!-- Navigation-->
+    <%- include ('../layouts/nav'); -%>
+    <!-- Page Header-->
+    <header
+      class="masthead"
+      style="background-image: url('/assets/mastheadImages/towfiqu-barbhuiya-bwOAixLG0uc-unsplash.jpg')"
+    >
+      <div class="container position-relative px-8 px-lg-8">
+        <div class="row gx-6 gx-lg-8 justify-content-center">
+          <div class="col-md-10 col-lg-10 col-xl-10">
+            <div class="site-heading">
+              <h1>Welcome to Admin Dashboard</h1>
+              <!-- <span class="subheading">Create an appointment</span> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <!-- Main Content-->
+    <div class="container-xl mb-5">
+      <div class="row justify-content-evenly">
+        <div class="col-xs-8 col-sm-8 col-md-6 col-lg-4 col-xl-4 mb-4">
+          <div
+            class="card myBoxShadow mx-auto"
+            data-aos="flip-left"
+          >
+            <a href="/admins/appointment-page">
+              <img
+                src="/img/adminDash.png"
+                class="card-img-top"
+                alt="beginner driver"
+              />
+              <div class="card-body">
+                <h5 class="card-title">Create an appointment</h5>
+                <p class="card-text">Add appointment slots that driver users can book to give their G/G2 test</p>
+              </div>
+            </a>
+          </div>
+        </div>
+        <div class="col-xs-8 col-sm-8 col-md-6 col-lg-4 col-xl-4">
+          <div
+            class="card myBoxShadow mx-auto"
+            data-aos="flip-left"
+          >
+            <a href="/admins/appointment-page">
+              <img
+                src="/img/adminDash.png"
+                class="card-img-top"
+                alt="beginner driver"
+              />
+              <div class="card-body">
+                <h5 class="card-title">Test results</h5>
+                <p class="card-text">View driver test results to submit to vendor for further processing</p>
+              </div>
+            </a>
           </div>
         </div>
       </div>
     </div>
-  </header>
-  <!-- Main Content-->
-  <div class="container-xl mb-5">
-    <div class="row justify-content-evenly">
-
-      <div class="col-xs-8 col-sm-8 col-md-6 col-lg-4 col-xl-4 mb-4">
-        <div class="card myBoxShadow mx-auto"
-          data-aos="flip-left">
-          <a href="/admins/appointment-page">
-            <img src="/img/adminDash.png"
-              class="card-img-top"
-              alt="beginner driver">
-            <div class="card-body">
-              <h5 class="card-title">Create an appointment</h5>
-              <p class="card-text">Add appointment slots that driver users can book to give their G/G2 test</p>
-            </div>
-          </a>
-        </div>
-      </div>
-      <div class="col-xs-8 col-sm-8 col-md-6 col-lg-4 col-xl-4">
-        <div class="card myBoxShadow mx-auto"
-          data-aos="flip-left">
-          <a href="/admins/appointment-page">
-            <img src="/img/adminDash.png"
-              class="card-img-top"
-              alt="beginner driver">
-            <div class="card-body">
-              <h5 class="card-title">Test results</h5>
-              <p class="card-text">View driver test results to submit to vendor for further processing</p>
-            </div>
-          </a>
-        </div>
-      </div>
-
-    </div>
-  </div>
-  <!-- Alert on new user creation -->
-  <!--  if(msg === "New driver created."){ %>
+    <!-- Alert on new user creation -->
+    <!--  if(msg === "New driver created."){ %>
     <div class="custom-alert-green">
       <span class="closebtn"
         onclick="this.parentElement.style.display='none';">&times;</span>
       <strong>Valid entries:</strong> New driver created.
     </div>
      } %> -->
-  <!-- Alert on user details update -->
-  <!--  if(msg === "Driver details were updated."){ %>
+    <!-- Alert on user details update -->
+    <!--  if(msg === "Driver details were updated."){ %>
     <div class="custom-alert-green">
       <span class="closebtn"
         onclick="this.parentElement.style.display='none';">&times;</span>
       <strong>Valid entries:</strong> Driver details were updated.
     </div>
      } %> -->
-  <div class="custom-alerts">
-    <!-- Validation Errors -->
-    <% if( errors != null && errors.length > 0 ) { %>
-    <% for( var i = 0; i < errors.length; i++ ) { %>
-    <div class="custom-alert-red">
-      <span class="closebtn"
-        onclick="this.parentElement.style.display='none';">&times;</span>
-      <strong>Server:</strong> <%= errors[i] %>
+    <div class="custom-alerts">
+      <!-- Validation Errors -->
+      <% if( errors != null && errors.length > 0 ) { %>
+      <% for( var i = 0; i < errors.length; i++ ) { %>
+      <div class="custom-alert-red">
+        <span
+          class="closebtn"
+          onclick="this.parentElement.style.display='none';"
+          >&times;</span
+        >
+        <strong>Server:</strong>
+        <%= errors[i] %>
+      </div>
+      <% } %>
+      <% } %>
+      <!-- Server Messages -->
+      <% if( serverMsgs != null && serverMsgs.length > 0 ) { %>
+      <% for( var i = 0; i < serverMsgs.length; i++ ) { %>
+      <div class="custom-alert-yellow">
+        <span
+          class="closebtn"
+          onclick="this.parentElement.style.display='none';"
+          >&times;</span
+        >
+        <strong>Server:</strong>
+        <%= serverMsgs[i] %>
+      </div>
+      <% } %>
+      <% } %>
     </div>
-    <% } %>
-    <% } %>
-    <!-- Server Messages -->
-    <% if( serverMsgs != null && serverMsgs.length > 0 ) { %>
-    <% for( var i = 0; i < serverMsgs.length; i++ ) { %>
-    <div class="custom-alert-yellow">
-      <span class="closebtn"
-        onclick="this.parentElement.style.display='none';">&times;</span>
-      <strong>Server:</strong> <%= serverMsgs[i] %>
-    </div>
-    <% } %>
-    <% } %>
-  </div>
-  <%- include ('../layouts/footer.ejs'); -%>
-  <%- include ('../layouts/scripts.ejs'); -%>
-</body>
-
+    <%- include ('../layouts/footer.ejs'); -%>
+    <%- include ('../layouts/scripts.ejs'); -%>
+  </body>
 </html>

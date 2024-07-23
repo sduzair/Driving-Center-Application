@@ -1,210 +1,262 @@
 <!DOCTYPE html>
 <html lang="en">
-<%- include ('layouts/header'); -%>
+  <%- include ('layouts/header'); -%>
 
-<body>
-  <!-- Navigation-->
-  <%- include ('layouts/nav'); -%>
-  <!-- Page Header-->
-  <header class="masthead"
-    style="background-image: url('/assets/mastheadImages/julian-hochgesang-qNKfj9mgraI-unsplash.jpg')">
-    <div class="position-relative px-4 px-lg-5">
-      <div class="row justify-content-center">
-        <div class="col-md-12 col-lg-12 col-xl-7">
-          <div class="site-heading">
-            <h1>Think Safe! Drive Safer!</h1>
-            <span class="subheading">We at ABC Driving School are committed to make the roads safer.</span>
+  <body>
+    <!-- Navigation-->
+    <%- include ('layouts/nav'); -%>
+    <!-- Page Header-->
+    <header
+      class="masthead"
+      style="background-image: url('/assets/mastheadImages/julian-hochgesang-qNKfj9mgraI-unsplash.jpg')"
+    >
+      <div class="position-relative px-4 px-lg-5">
+        <div class="row justify-content-center">
+          <div class="col-md-12 col-lg-12 col-xl-7">
+            <div class="site-heading">
+              <h1>Think Safe! Drive Safer!</h1>
+              <span class="subheading">We at ABC Driving School are committed to make the roads safer.</span>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </header>
+    </header>
 
-  <section class="page-section"
-    id="about">
-    <div class="container">
-      <div class="text-center mb-5">
-        <h2 class="section-heading text-uppercase">User Journey</h2>
-        <h3 class="section-subheading text-muted">The following timeline depicts how <i>Admin</i>, <i>Driver</i>
-          and <i>Examiner</i> users interact with the application.</h3>
+    <section
+      class="page-section"
+      id="about"
+    >
+      <div class="container">
+        <div class="text-center mb-5">
+          <h2 class="section-heading text-uppercase">User Journey</h2>
+          <h3 class="section-subheading text-muted">The following timeline depicts how <i>Admin</i>, <i>Driver</i> and <i>Examiner</i> users interact with the application.</h3>
+        </div>
+        <ul class="timeline">
+          <li>
+            <div
+              class="timeline-image row align-items-center"
+              data-aos="zoom-in"
+            >
+              <i
+                class="fa-thin fa-1"
+                style="font-size: 15vmin"
+              ></i>
+            </div>
+            <div
+              class="timeline-panel"
+              data-aos="fade-up-right"
+            >
+              <div class="timeline-heading">
+                <h4 class="subheading">Driver Details</h4>
+              </div>
+              <div class="timeline-body">
+                <p class="text-muted">Driver users upon signup and login are greeted with the dashboard. They add their details in the form on the licence page</p>
+              </div>
+            </div>
+          </li>
+
+          <li class="timeline-inverted">
+            <div
+              class="timeline-image row align-items-center"
+              data-aos="zoom-in"
+            >
+              <i
+                class="fa-thin fa-2"
+                style="font-size: 15vmin"
+              ></i>
+            </div>
+            <div
+              class="timeline-panel"
+              data-aos="fade-up-left"
+            >
+              <div class="timeline-heading">
+                <h4 class="subheading">Updating Driver Details</h4>
+              </div>
+              <div class="timeline-body">
+                <p class="text-muted">Driver users at any point may choose to view and update their details</p>
+              </div>
+            </div>
+          </li>
+
+          <li>
+            <div
+              class="timeline-image row align-items-center"
+              data-aos="zoom-in"
+            >
+              <i
+                class="fa-thin fa-3"
+                style="font-size: 15vmin"
+              ></i>
+            </div>
+            <div
+              class="timeline-panel"
+              data-aos="fade-up-right"
+            >
+              <div class="timeline-heading">
+                <h4 class="subheading">Driver Appointment</h4>
+              </div>
+              <div class="timeline-body">
+                <p class="text-muted">Driver users who have submitted their details, upon login, will see the option to book an appointment either for G2 Licence or G Licence</p>
+              </div>
+            </div>
+          </li>
+
+          <li class="timeline-inverted">
+            <div
+              class="timeline-image row align-items-center"
+              data-aos="zoom-in"
+            >
+              <i
+                class="fa-thin fa-4"
+                style="font-size: 15vmin"
+              ></i>
+            </div>
+            <div
+              class="timeline-panel"
+              data-aos="fade-up-left"
+            >
+              <div class="timeline-heading">
+                <h4 class="subheading">Admin Appointment Slot</h4>
+              </div>
+              <div class="timeline-body">
+                <p class="text-muted">Admin user upon signup and login has the privilege to create appointment slots which Driver user can select and book.</p>
+              </div>
+            </div>
+          </li>
+
+          <li>
+            <div
+              class="timeline-image row align-items-center"
+              data-aos="zoom-in"
+            >
+              <i
+                class="fa-thin fa-5"
+                style="font-size: 15vmin"
+              ></i>
+            </div>
+            <div
+              class="timeline-panel"
+              data-aos="fade-up-right"
+            >
+              <div class="timeline-heading">
+                <h4 class="subheading">Driver Books Appointment</h4>
+              </div>
+              <div class="timeline-body">
+                <p class="text-muted">Driver user can book the appointment slot created by Admin to register for either G or G2 test.</p>
+              </div>
+            </div>
+          </li>
+
+          <li class="timeline-inverted">
+            <div
+              class="timeline-image row align-items-center"
+              data-aos="zoom-in"
+            >
+              <i
+                class="fa-thin fa-6"
+                style="font-size: 15vmin"
+              ></i>
+            </div>
+            <div
+              class="timeline-panel"
+              data-aos="fade-up-left"
+            >
+              <div class="timeline-heading">
+                <h4 class="subheading">Examiner Views Appointments</h4>
+              </div>
+              <div class="timeline-body">
+                <p class="text-muted">Examiner user sees the list of all drivers that are ready for either G or G2 test. He assigns the test result to the Driver.</p>
+              </div>
+            </div>
+          </li>
+
+          <li>
+            <div
+              class="timeline-image row align-items-center"
+              data-aos="zoom-in"
+            >
+              <i
+                class="fa-thin fa-7"
+                style="font-size: 15vmin"
+              ></i>
+            </div>
+            <div
+              class="timeline-panel"
+              data-aos="fade-up-right"
+            >
+              <div class="timeline-heading">
+                <h4 class="subheading">Driver Results</h4>
+              </div>
+              <div class="timeline-body">
+                <p class="text-muted">Driver user interface is updated upon assigning of results by Examiner</p>
+              </div>
+            </div>
+          </li>
+
+          <li class="timeline-inverted">
+            <div
+              class="timeline-image row align-items-center"
+              data-aos="zoom-in"
+            >
+              <i
+                class="fa-thin fa-8"
+                style="font-size: 15vmin"
+              ></i>
+            </div>
+            <div
+              class="timeline-panel"
+              data-aos="fade-up-left"
+            >
+              <div class="timeline-heading">
+                <h4 class="subheading">Admin vendor submission</h4>
+              </div>
+              <div class="timeline-body">
+                <p class="text-muted">The Admin user is able to view the list of all drivers who have received their results and submits these to an external vendor for further processing.</p>
+              </div>
+            </div>
+          </li>
+
+          <li class="timeline-inverted">
+            <div
+              class="timeline-image"
+              data-aos="zoom-in"
+            ></div>
+          </li>
+        </ul>
       </div>
-      <ul class="timeline">
+    </section>
 
-        <li>
-          <div class="timeline-image  row align-items-center"
-            data-aos="zoom-in">
-            <i class="fa-thin fa-1"
-              style="font-size: 15vmin;"></i>
-          </div>
-          <div class="timeline-panel"
-            data-aos="fade-up-right">
-            <div class="timeline-heading">
-              <h4 class="subheading">Driver Details</h4>
-            </div>
-            <div class="timeline-body">
-              <p class="text-muted">Driver users upon signup and login are greeted with the dashboard. They add their
-                details in the form on the licence page</p>
-            </div>
-          </div>
-        </li>
-
-        <li class="timeline-inverted">
-          <div class="timeline-image row align-items-center"
-            data-aos="zoom-in">
-            <i class="fa-thin fa-2"
-              style="font-size: 15vmin;"></i></i>
-          </div>
-          <div class="timeline-panel"
-            data-aos="fade-up-left">
-            <div class="timeline-heading">
-              <h4 class="subheading">Updating Driver Details</h4>
-            </div>
-            <div class="timeline-body">
-              <p class="text-muted">Driver users at any point may choose to view and update their details</p>
-            </div>
-          </div>
-        </li>
-
-        <li>
-          <div class="timeline-image row align-items-center"
-            data-aos="zoom-in">
-            <i class="fa-thin fa-3"
-              style="font-size: 15vmin;"></i>
-          </div>
-          <div class="timeline-panel"
-            data-aos="fade-up-right">
-            <div class="timeline-heading">
-              <h4 class="subheading">Driver Appointment</h4>
-            </div>
-            <div class="timeline-body">
-              <p class="text-muted">Driver users who have submitted their details, upon login, will see the option to
-                book an appointment either for G2 Licence or G Licence</p>
-            </div>
-          </div>
-        </li>
-
-        <li class="timeline-inverted">
-          <div class="timeline-image row align-items-center"
-            data-aos="zoom-in">
-            <i class="fa-thin fa-4"
-              style="font-size: 15vmin;"></i>
-          </div>
-          <div class="timeline-panel"
-            data-aos="fade-up-left">
-            <div class="timeline-heading">
-              <h4 class="subheading">Admin Appointment Slot</h4>
-            </div>
-            <div class="timeline-body">
-              <p class="text-muted">Admin user upon signup and login has the privilege to create appointment slots which
-                Driver user can select and book.</p>
-            </div>
-          </div>
-        </li>
-
-        <li>
-          <div class="timeline-image row align-items-center"
-            data-aos="zoom-in">
-            <i class="fa-thin fa-5"
-              style="font-size: 15vmin;"></i>
-          </div>
-          <div class="timeline-panel"
-            data-aos="fade-up-right">
-            <div class="timeline-heading">
-              <h4 class="subheading">Driver Books Appointment</h4>
-            </div>
-            <div class="timeline-body">
-              <p class="text-muted">Driver user can book the appointment slot created by Admin to register for either G
-                or G2 test.</p>
-            </div>
-          </div>
-        </li>
-
-        <li class="timeline-inverted">
-          <div class="timeline-image row align-items-center"
-            data-aos="zoom-in">
-            <i class="fa-thin fa-6"
-              style="font-size: 15vmin;"></i>
-          </div>
-          <div class="timeline-panel"
-            data-aos="fade-up-left">
-            <div class="timeline-heading">
-              <h4 class="subheading">Examiner Views Appointments</h4>
-            </div>
-            <div class="timeline-body">
-              <p class="text-muted">Examiner user sees the list of all drivers that are ready for either G or G2 test.
-                He assigns the test result to the Driver.</p>
-            </div>
-          </div>
-        </li>
-
-        <li>
-          <div class="timeline-image row align-items-center"
-            data-aos="zoom-in">
-            <i class="fa-thin fa-7"
-              style="font-size: 15vmin;"></i>
-          </div>
-          <div class="timeline-panel"
-            data-aos="fade-up-right">
-            <div class="timeline-heading">
-              <h4 class="subheading">Driver Results</h4>
-            </div>
-            <div class="timeline-body">
-              <p class="text-muted">Driver user interface is updated upon assigning of results by Examiner</p>
-            </div>
-          </div>
-        </li>
-
-        <li class="timeline-inverted">
-          <div class="timeline-image row align-items-center"
-            data-aos="zoom-in">
-            <i class="fa-thin fa-8"
-              style="font-size: 15vmin;"></i>
-          </div>
-          <div class="timeline-panel"
-            data-aos="fade-up-left">
-            <div class="timeline-heading">
-              <h4 class="subheading">Admin vendor submission</h4>
-            </div>
-            <div class="timeline-body">
-              <p class="text-muted">The Admin user is able to view the list of all drivers who have received their
-                results and submits these to an external vendor for further processing.</p>
-            </div>
-          </div>
-        </li>
-
-        <li class="timeline-inverted">
-          <div class="timeline-image "
-            data-aos="zoom-in">
-          </div>
-        </li>
-
-      </ul>
+    <div class="custom-alerts">
+      <!-- Validation Errors -->
+      <% if( errors != null && errors.length > 0 ) { %>
+      <% for( var i = 0; i < errors.length; i++ ) { %>
+      <div class="custom-alert-red">
+        <span
+          class="closebtn"
+          onclick="this.parentElement.style.display='none';"
+          >&times;</span
+        >
+        <strong>Server:</strong>
+        <%= errors[i] %>
+      </div>
+      <% } %>
+      <% } %>
+      <!-- Server Messages -->
+      <% if( serverMsgs != null && serverMsgs.length > 0 ) { %>
+      <% for( var i = 0; i < serverMsgs.length; i++ ) { %>
+      <div class="custom-alert-yellow">
+        <span
+          class="closebtn"
+          onclick="this.parentElement.style.display='none';"
+          >&times;</span
+        >
+        <strong>Server:</strong>
+        <%= serverMsgs[i] %>
+      </div>
+      <% } %>
+      <% } %>
     </div>
-  </section>
-
-  <div class="custom-alerts">
-    <!-- Validation Errors -->
-    <% if( errors != null && errors.length > 0 ) { %>
-    <% for( var i = 0; i < errors.length; i++ ) { %>
-    <div class="custom-alert-red">
-      <span class="closebtn"
-        onclick="this.parentElement.style.display='none';">&times;</span>
-      <strong>Server:</strong> <%= errors[i] %>
-    </div>
-    <% } %>
-    <% } %>
-    <!-- Server Messages -->
-    <% if( serverMsgs != null && serverMsgs.length > 0 ) { %>
-    <% for( var i = 0; i < serverMsgs.length; i++ ) { %>
-    <div class="custom-alert-yellow">
-      <span class="closebtn"
-        onclick="this.parentElement.style.display='none';">&times;</span>
-      <strong>Server:</strong> <%= serverMsgs[i] %>
-    </div>
-    <% } %>
-    <% } %>
-  </div>
-  <%- include ('layouts/footer.ejs'); -%> <%- include ('layouts/scripts.ejs'); -%>
-</body>
-
+    <%- include ('layouts/footer.ejs'); -%>
+    <%- include ('layouts/scripts.ejs'); -%>
+  </body>
 </html>

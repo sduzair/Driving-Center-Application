@@ -1,70 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
-<%- include ('../layouts/header'); -%>
+  <%- include ('../layouts/header'); -%>
 
-<head>
-  <link href="/css/user-profiles.css"
-    rel="stylesheet">
-</head>
+  <head>
+    <link
+      href="/css/user-profiles.css"
+      rel="stylesheet"
+    />
+  </head>
 
-<body>
-  <!-- Navigation-->
-  <%- include ('../layouts/nav'); -%>
-  <!-- Page Header-->
-  <header class="masthead"
-    style="background-image: url('/assets/mastheadImages/chuttersnap-hmWcrTxvAk0-unsplash.jpg');">
-    <div class="container position-relative px-8 px-lg-8">
-      <div class="row gx-6 gx-lg-8 justify-content-center">
-        <div class="col-md-10 col-lg-10 col-xl-10">
-          <div class="site-heading">
-            <h1>Results</h1>
-            <span class="subheading">View test results details of drivers who have completed their test</span>
+  <body>
+    <!-- Navigation-->
+    <%- include ('../layouts/nav'); -%>
+    <!-- Page Header-->
+    <header
+      class="masthead"
+      style="background-image: url('/assets/mastheadImages/chuttersnap-hmWcrTxvAk0-unsplash.jpg')"
+    >
+      <div class="container position-relative px-8 px-lg-8">
+        <div class="row gx-6 gx-lg-8 justify-content-center">
+          <div class="col-md-10 col-lg-10 col-xl-10">
+            <div class="site-heading">
+              <h1>Results</h1>
+              <span class="subheading">View test results details of drivers who have completed their test</span>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </header>
+    </header>
 
-  <!-- user cards -->
-  <div class="container-fluid mb-5">
-    <div class="row justify-content-center">
-      <% if(driversObj) for(var i = 0; i < driversObj.length; i++) { %>
-      <div class="col-sm-12 col-md-12 col-lg-5 col-xl-5"
-        data-aos="fade-in"
-        data-aos-delay="<%- (i % 2 == 0) ? "0" : "100" %>">
-        <div class="card user-card-full">
-          <div class="row m-l-0 m-r-0">
-            <div class="col-sm-4 bg-c-lite-green user-profile">
-              <div class="card-block text-center text-white">
-                <div> <img src="/assets<%- driversObj[i].image1 %>"
-                    class="img-radius"
-                    alt="User-Profile-Image"
-                    onerror="this.onerror=null;this.src='/assets/icons/user.png'"> </div>
+    <!-- user cards -->
+    <div class="container-fluid mb-5">
+      <div class="row justify-content-center">
+        <% if(driversObj) for(var i = 0; i < driversObj.length; i++) { %>
+        <div
+          class="col-sm-12 col-md-12 col-lg-5 col-xl-5"
+          data-aos="fade-in"
+          data-aos-delay="<%- (i % 2 == 0) ? '0' : '100' %>"
+        >
+          <div class="card user-card-full">
+            <div class="row m-l-0 m-r-0">
+              <div class="col-sm-4 bg-c-lite-green user-profile">
+                <div class="card-block text-center text-white">
+                  <div>
+                    <img
+                      src="/assets<%- driversObj[i].image1 %>"
+                      class="img-radius"
+                      alt="User-Profile-Image"
+                      onerror="this.onerror=null;this.src='/assets/icons/user.png'"
+                    />
+                  </div>
+                </div>
               </div>
-            </div>
-            <div class="col-sm-8 ">
-              <div class="row mx-1">
-                <div class="card-block">
-                  <div class="row row-cols-2 gx-1 justify-content-between">
-                    <div class="col">
-                      <p class="row">Name:</p>
-                      <p class="row mx-1 small-font"><mark><%- driversObj[i].firstName %> <%- driversObj[i].lastName %>
-                        </mark></p>
-                    </div>
-                    <div class="col">
-                      <p class="row">Test:</p>
-                      <p class="row mx-1 small-font"><mark><%- driversObj[i].appointmentType %></mark></p>
-
-                    </div>
-                    <div class="col">
-                      <p class="row">Licence no:</p>
-                      <p class="row mx-1 small-font"><mark><%- driversObj[i].carLicenceNumber %></mark></p>
-                    </div>
-                    <div class="col">
-                      <p class="row">Result:</p>
-                      <p class="row mx-1 small-font"><mark
-                          class="<%= driversObj[i].testResult ? 'bg-success' : 'bg-danger color-white' %> bg-gradient"><%- driversObj[i].testResult ? 'Pass' : 'Fail'%></mark>
-                      </p>
+              <div class="col-sm-8">
+                <div class="row mx-1">
+                  <div class="card-block">
+                    <div class="row row-cols-2 gx-1 justify-content-between">
+                      <div class="col">
+                        <p class="row">Name:</p>
+                        <p class="row mx-1 small-font">
+                          <mark
+                            ><%- driversObj[i].firstName %>
+                            <%- driversObj[i].lastName %>
+                          </mark>
+                        </p>
+                      </div>
+                      <div class="col">
+                        <p class="row">Test:</p>
+                        <p class="row mx-1 small-font">
+                          <mark><%- driversObj[i].appointmentType %></mark>
+                        </p>
+                      </div>
+                      <div class="col">
+                        <p class="row">Licence no:</p>
+                        <p class="row mx-1 small-font">
+                          <mark><%- driversObj[i].carLicenceNumber %></mark>
+                        </p>
+                      </div>
+                      <div class="col">
+                        <p class="row">Result:</p>
+                        <p class="row mx-1 small-font">
+                          <mark class="<%= driversObj[i].testResult ? 'bg-success' : 'bg-danger color-white' %> bg-gradient"
+                            ><%- driversObj[i].testResult ? 'Pass' :
+                          'Fail'%></mark
+                          >
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -72,17 +93,12 @@
             </div>
           </div>
         </div>
+        <% } %>
       </div>
-      <% } %>
-
-
-
     </div>
-  </div>
 
-  <%- include ('../components/custom-alerts.ejs'); -%>
-  <%- include ('../layouts/footer.ejs'); -%>
-  <%- include ('../layouts/scripts.ejs'); -%>
-</body>
-
+    <%- include ('../components/custom-alerts.ejs'); -%>
+    <%- include ('../layouts/footer.ejs'); -%>
+    <%- include ('../layouts/scripts.ejs'); -%>
+  </body>
 </html>

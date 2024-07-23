@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-<%- include ('layouts/header'); -%>
+  <%- include ('layouts/header'); -%>
 
-<body>
-  <!-- Navigation-->
-  <%- include ('layouts/nav'); -%>
-  <!-- Page Header-->
-  <!-- <header class="masthead-driver-login-background masthead">
+  <body>
+    <!-- Navigation-->
+    <%- include ('layouts/nav'); -%>
+    <!-- Page Header-->
+    <!-- <header class="masthead-driver-login-background masthead">
     <div class="container position-relative px-4 px-lg-5">
       <div class="row gx-4 gx-lg-5 justify-content-center">
         <div class="col-md-10 col-lg-8 col-xl-7">
@@ -18,90 +18,116 @@
       </div>
     </div>
   </header> -->
-  <!-- Main Content-->
-  <div class="container px-4 px-lg-5 marginTop">
-    <div class="row gx-4 gx-lg-5 justify-content-center mt-5 mb-5">
-      <div class="col-md-12 col-lg-10 col-xl-10">
-        <section>
-          <div class="container-fluid h-custom">
-            <div class="row d-flex justify-content-center align-items-center">
-              <div class="col-md-9 col-lg-6 col-xl-5">
-                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
-                  class="img-fluid"
-                  alt="Sample image" />
-              </div>
-              <div class="col-md-9 col-lg-7 col-xl-6 offset-xl-1">
-                <!-- Login Form -->
-                <form class="row g-3"
-                  action="/users/login#input-username"
-                  method="POST">
-                  <!-- Username input -->
-                  <div class="form-outline mb-4">
-                    <input type="text"
-                      id="input-username"
-                      class="form-control form-control-lg"
-                      placeholder="Enter a valid username"
-                      name="username" />
-                    <label class="form-label"
-                      for="input-username">Username</label>
-                  </div>
+    <!-- Main Content-->
+    <div class="container px-4 px-lg-5 marginTop">
+      <div class="row gx-4 gx-lg-5 justify-content-center mt-5 mb-5">
+        <div class="col-md-12 col-lg-10 col-xl-10">
+          <section>
+            <div class="container-fluid h-custom">
+              <div class="row d-flex justify-content-center align-items-center">
+                <div class="col-md-9 col-lg-6 col-xl-5">
+                  <img
+                    src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
+                    class="img-fluid"
+                    alt="Sample image"
+                  />
+                </div>
+                <div class="col-md-9 col-lg-7 col-xl-6 offset-xl-1">
+                  <!-- Login Form -->
+                  <form
+                    class="row g-3"
+                    action="/users/login#input-username"
+                    method="POST"
+                  >
+                    <!-- Username input -->
+                    <div class="form-outline mb-4">
+                      <input
+                        type="text"
+                        id="input-username"
+                        class="form-control form-control-lg"
+                        placeholder="Enter a valid username"
+                        name="username"
+                      />
+                      <label
+                        class="form-label"
+                        for="input-username"
+                        >Username</label
+                      >
+                    </div>
 
-                  <!-- Password input -->
-                  <div class="form-outline mb-3">
-                    <input type="password"
-                      id="inputPassword"
-                      class="form-control form-control-lg"
-                      placeholder="Enter password"
-                      name="password" />
-                    <label class="form-label"
-                      for="inputPassword">Password</label>
-                  </div>
+                    <!-- Password input -->
+                    <div class="form-outline mb-3">
+                      <input
+                        type="password"
+                        id="inputPassword"
+                        class="form-control form-control-lg"
+                        placeholder="Enter password"
+                        name="password"
+                      />
+                      <label
+                        class="form-label"
+                        for="inputPassword"
+                        >Password</label
+                      >
+                    </div>
 
-                  <div class="text-center text-lg-start mt-4 pt-2">
-                    <button type="submit"
-                      class="btn btn-primary btn-lg"
-                      style="padding-left: 2.5rem; padding-right: 2.5rem"
-                      data-aos="flip-up">
-                      Login
-                    </button>
-                    <p class="small fw-bold mt-2 pt-1 mb-0">
-                      Don't have an account?
-                      <a href="/signup"
-                        class="link-danger">Signup</a>
-                    </p>
-                  </div>
-                </form>
+                    <div class="text-center text-lg-start mt-4 pt-2">
+                      <button
+                        type="submit"
+                        class="btn btn-primary btn-lg"
+                        style="padding-left: 2.5rem; padding-right: 2.5rem"
+                        data-aos="flip-up"
+                      >
+                        Login
+                      </button>
+                      <p class="small fw-bold mt-2 pt-1 mb-0">
+                        Don't have an account?
+                        <a
+                          href="/signup"
+                          class="link-danger"
+                          >Signup</a
+                        >
+                      </p>
+                    </div>
+                  </form>
+                </div>
               </div>
             </div>
-          </div>
-        </section>
+          </section>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="custom-alerts">
-    <!-- Validation Errors -->
-    <% if( errors != null && errors.length > 0 ) { %>
-    <% for( var i = 0; i < errors.length; i++ ) { %>
-    <div class="custom-alert-red">
-      <span class="closebtn"
-        onclick="this.parentElement.style.display='none';">&times;</span>
-      <strong>Server:</strong> <%= errors[i] %>
+    <div class="custom-alerts">
+      <!-- Validation Errors -->
+      <% if( errors != null && errors.length > 0 ) { %>
+      <% for( var i = 0; i < errors.length; i++ ) { %>
+      <div class="custom-alert-red">
+        <span
+          class="closebtn"
+          onclick="this.parentElement.style.display='none';"
+          >&times;</span
+        >
+        <strong>Server:</strong>
+        <%= errors[i] %>
+      </div>
+      <% } %>
+      <% } %>
+      <!-- Server Messages -->
+      <% if( serverMsgs != null && serverMsgs.length > 0 ) { %>
+      <% for( var i = 0; i < serverMsgs.length; i++ ) { %>
+      <div class="custom-alert-yellow">
+        <span
+          class="closebtn"
+          onclick="this.parentElement.style.display='none';"
+          >&times;</span
+        >
+        <strong>Server:</strong>
+        <%= serverMsgs[i] %>
+      </div>
+      <% } %>
+      <% } %>
     </div>
-    <% } %>
-    <% } %>
-    <!-- Server Messages -->
-    <% if( serverMsgs != null && serverMsgs.length > 0 ) { %>
-    <% for( var i = 0; i < serverMsgs.length; i++ ) { %>
-    <div class="custom-alert-yellow">
-      <span class="closebtn"
-        onclick="this.parentElement.style.display='none';">&times;</span>
-      <strong>Server:</strong> <%= serverMsgs[i] %>
-    </div>
-    <% } %>
-    <% } %>
-  </div>
-  <%- include ('layouts/footer.ejs'); -%>
-  <%- include ('layouts/scripts.ejs'); -%>
-</body>
-
+    <%- include ('layouts/footer.ejs'); -%>
+    <%- include ('layouts/scripts.ejs'); -%>
+  </body>
 </html>

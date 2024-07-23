@@ -1,19 +1,27 @@
-<nav class="navbar navbar-expand-lg navbar-light"
-  id="mainNav">
+<nav
+  class="navbar navbar-expand-lg navbar-light"
+  id="mainNav"
+>
   <div class="container-lg px-4 px-lg-5">
-    <a class="navbar-brand"
+    <a
+      class="navbar-brand"
       id="navHeading"
       href="/"
-      data-aos="fade-right">
+      data-aos="fade-right"
+    >
       <picture>
-        <source media="(min-width:768px)"
+        <source
+          media="(min-width:768px)"
           srcset="/assets/logo/logo_ekj6vu_c_scale,w_1400.png 1400w"
-          sizes="300px">
-        <source media="(min-width:0px)"
+          sizes="300px"
+        />
+        <source
+          media="(min-width:0px)"
           srcset="/assets/logo/logo_ekj6vu_c_scale,w_1400.png 1400w"
           sizes="200px"
-          src="/assets/logo/logo_ekj6vu_c_scale,w_1400.png">
-        <img src="/assets/logo/logo_ekj6vu_c_scale,w_1400.png">
+          src="/assets/logo/logo_ekj6vu_c_scale,w_1400.png"
+        />
+        <img src="/assets/logo/logo_ekj6vu_c_scale,w_1400.png" />
       </picture>
       <!-- <img src="/assets/logo/logo_ekj6vu_c_scale,w_1400.png"
         alt=""
@@ -21,84 +29,143 @@
         height="auto"> -->
     </a>
 
-    <button class="navbar-toggler"
+    <button
+      class="navbar-toggler"
       type="button"
       data-bs-toggle="collapse"
       data-bs-target="#navbarResponsive"
       aria-controls="navbarResponsive"
       aria-expanded="false"
-      aria-label="Toggle navigation">
+      aria-label="Toggle navigation"
+    >
       Menu
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse"
-      id="navbarResponsive">
+    <div
+      class="collapse navbar-collapse"
+      id="navbarResponsive"
+    >
       <ul class="navbar-nav ms-auto py-4 py-lg-0">
         <% if(loggedIn == 'Driver') { %>
-        <li class="nav-item"
-          data-aos="fade-left">
-          <a class="nav-link px-lg-3 py-3 py-lg-4"
-            href="/drivers/dashboard-page">dashboard</a>
+        <li
+          class="nav-item"
+          data-aos="fade-left"
+        >
+          <a
+            class="nav-link px-lg-3 py-3 py-lg-4"
+            href="/drivers/dashboard-page"
+            >dashboard</a
+          >
         </li>
-        <li class="nav-item"
-          data-aos="fade-left">
-          <a class="nav-link px-lg-3 py-3 py-lg-4"
-            href="/drivers/g2-page">G2</a>
+        <li
+          class="nav-item"
+          data-aos="fade-left"
+        >
+          <a
+            class="nav-link px-lg-3 py-3 py-lg-4"
+            href="/drivers/g2-page"
+            >G2</a
+          >
         </li>
-        <li class="nav-item"
-          data-aos="fade-left">
-          <a class="nav-link px-lg-3 py-3 py-lg-4"
-            href="/drivers/g-page">G</a>
+        <li
+          class="nav-item"
+          data-aos="fade-left"
+        >
+          <a
+            class="nav-link px-lg-3 py-3 py-lg-4"
+            href="/drivers/g-page"
+            >G</a
+          >
         </li>
         <% } %>
         <% if(loggedIn == 'Admin') { %>
-        <li class="nav-item"
-          data-aos="fade-left">
-          <a class="nav-link px-lg-3 py-3 py-lg-4"
-            href="/admins/dashboard-page">dashboard</a>
+        <li
+          class="nav-item"
+          data-aos="fade-left"
+        >
+          <a
+            class="nav-link px-lg-3 py-3 py-lg-4"
+            href="/admins/dashboard-page"
+            >dashboard</a
+          >
         </li>
-        <li class="nav-item"
-          data-aos="fade-left">
-          <a class="nav-link px-lg-3 py-3 py-lg-4"
-            href="/admins/appointment-page">Create Appointment</a>
+        <li
+          class="nav-item"
+          data-aos="fade-left"
+        >
+          <a
+            class="nav-link px-lg-3 py-3 py-lg-4"
+            href="/admins/appointment-page"
+            >Create Appointment</a
+          >
         </li>
-        <li class="nav-item"
-          data-aos="fade-left">
-          <a class="nav-link px-lg-3 py-3 py-lg-4"
-            href="/admins/test-results-page">Test Results</a>
+        <li
+          class="nav-item"
+          data-aos="fade-left"
+        >
+          <a
+            class="nav-link px-lg-3 py-3 py-lg-4"
+            href="/admins/test-results-page"
+            >Test Results</a
+          >
         </li>
         <% } %>
         <% if(loggedIn == 'Examiner') { %>
-        <li class="nav-item"
-          data-aos="fade-left">
-          <a class="nav-link px-lg-3 py-3 py-lg-4"
-            href="/examiners/dashboard">dashboard</a>
+        <li
+          class="nav-item"
+          data-aos="fade-left"
+        >
+          <a
+            class="nav-link px-lg-3 py-3 py-lg-4"
+            href="/examiners/dashboard"
+            >dashboard</a
+          >
         </li>
-        <li class="nav-item"
-          data-aos="fade-left">
-          <a class="nav-link px-lg-3 py-3 py-lg-4"
-            href="/examiners/appointments-page">Appointments</a>
+        <li
+          class="nav-item"
+          data-aos="fade-left"
+        >
+          <a
+            class="nav-link px-lg-3 py-3 py-lg-4"
+            href="/examiners/appointments-page"
+            >Appointments</a
+          >
         </li>
 
         <% } %>
 
         <% if (loggedIn) { %>
-        <li class="nav-item"
-          data-aos="fade-left">
-          <a class="nav-link px-lg-3 py-3 py-lg-4"
-            href="/logout">Logout</a>
+        <li
+          class="nav-item"
+          data-aos="fade-left"
+        >
+          <a
+            class="nav-link px-lg-3 py-3 py-lg-4"
+            href="/logout"
+            >Logout</a
+          >
         </li>
         <% } %>
         <% if(!loggedIn) { %>
-        <li class="nav-item"
-          data-aos="fade-left">
-          <a class="nav-link px-lg-3 py-3 py-lg-4"
-            href="/login">login</a>
+        <li
+          class="nav-item"
+          data-aos="fade-left"
+        >
+          <a
+            class="nav-link px-lg-3 py-3 py-lg-4"
+            href="/login"
+            >login</a
+          >
         </li>
-        <li class="nav-item"
-          data-aos="fade-left">
-          <a class="nav-link px-lg-3 py-3 py-lg-4"
-            href="/signup">signup</a>
+        <li
+          class="nav-item"
+          data-aos="fade-left"
+        >
+          <a
+            class="nav-link px-lg-3 py-3 py-lg-4"
+            href="/signup"
+            >signup</a
+          >
         </li>
         <% } %>
       </ul>

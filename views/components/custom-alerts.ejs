@@ -3,9 +3,13 @@
   <% if( errors != null && errors.length > 0 ) { %>
   <% for( var i = 0; i < errors.length; i++ ) { %>
   <div class="custom-alert-red">
-    <span class="closebtn"
-      onclick="this.parentElement.style.display='none';">&times;</span>
-    <strong>Server:</strong> <%= errors[i] %>
+    <span
+      class="closebtn"
+      onclick="this.parentElement.style.display='none';"
+      >&times;</span
+    >
+    <strong>Server:</strong>
+    <%= errors[i] %>
   </div>
   <% } %>
   <% } %>
@@ -13,9 +17,13 @@
   <% if( serverMsgs != null && serverMsgs.length > 0 ) { %>
   <% for( var i = 0; i < serverMsgs.length; i++ ) { %>
   <div class="custom-alert-yellow">
-    <span class="closebtn"
-      onclick="this.parentElement.style.display='none';">&times;</span>
-    <strong>Server:</strong> <%= serverMsgs[i] %>
+    <span
+      class="closebtn"
+      onclick="this.parentElement.style.display='none';"
+      >&times;</span
+    >
+    <strong>Server:</strong>
+    <%= serverMsgs[i] %>
   </div>
   <% } %>
   <% } %>

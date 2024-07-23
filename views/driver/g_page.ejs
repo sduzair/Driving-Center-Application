@@ -1,220 +1,214 @@
 <!DOCTYPE html>
 <html lang="en">
-<% if( !appointmentDetail ) { %>
+  <% if( !appointmentDetail ) { %>
 
-<head>
-  <!-- CALENDAR WIDGET -->
-  <!-- Popperjs -->
-  <!-- exists in common head layouts/header -->
-  <!-- <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.2/dist/umd/popper.min.js"
+  <head>
+    <!-- CALENDAR WIDGET -->
+    <!-- Popperjs -->
+    <!-- exists in common head layouts/header -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.2/dist/umd/popper.min.js"
     crossorigin="anonymous"></script> -->
-  <!-- Tempus Dominus JavaScript -->
-  <script src="https://cdn.jsdelivr.net/gh/Eonasdan/tempus-dominus@master/dist/js/tempus-dominus.js"
-    crossorigin="anonymous"></script>
+    <!-- Tempus Dominus JavaScript -->
+    <script
+      src="https://cdn.jsdelivr.net/gh/Eonasdan/tempus-dominus@master/dist/js/tempus-dominus.js"
+      crossorigin="anonymous"
+    ></script>
 
-  <!-- Tempus Dominus Styles -->
-  <link href="https://cdn.jsdelivr.net/gh/Eonasdan/tempus-dominus@master/dist/css/tempus-dominus.css"
-    rel="stylesheet"
-    crossorigin="anonymous">
-</head>
-<% } %>
-<%- include ('../layouts/header'); -%>
+    <!-- Tempus Dominus Styles -->
+    <link
+      href="https://cdn.jsdelivr.net/gh/Eonasdan/tempus-dominus@master/dist/css/tempus-dominus.css"
+      rel="stylesheet"
+      crossorigin="anonymous"
+    />
+  </head>
+  <% } %>
+  <%- include ('../layouts/header'); -%>
 
-<body>
-  <!-- Navigation-->
-  <%- include ('../layouts/nav'); -%>
-  <!-- Page Header-->
-  <header class="masthead"
-    style="background-image: url('/assets/mastheadImages/kishor-bidxPYPVdP0-unsplash.jpg');">
-    <div class="container position-relative px-4 px-lg-5">
-      <div class="row gx-4 gx-lg-5 justify-content-center">
-        <div class="col-md-10 col-lg-8 col-xl-7">
-          <div class="site-heading">
-            <h1>G Licence</h1>
-            <span class="subheading">Register for the G test.</span>
+  <body>
+    <!-- Navigation-->
+    <%- include ('../layouts/nav'); -%>
+    <!-- Page Header-->
+    <header
+      class="masthead"
+      style="background-image: url('/assets/mastheadImages/kishor-bidxPYPVdP0-unsplash.jpg')"
+    >
+      <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+          <div class="col-md-10 col-lg-8 col-xl-7">
+            <div class="site-heading">
+              <h1>G Licence</h1>
+              <span class="subheading">Register for the G test.</span>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </header>
+    </header>
 
+    <% if(driver){ %>
 
-  <% if(driver){ %>
+    <div class="container mb-5">
+      <div class="row gx-4 gx-lg-5 justify-content-center">
+        <div class="col-md-12 col-lg-6 col-xl-6">
+          <form
+            class="row g-3 userDetails"
+            action="/drivers/updateGDriver#personal"
+            method="POST"
+          >
+            <%- include ('components/updateForm'); -%>
+          </form>
+        </div>
 
-  <div class="container mb-5">
-    <div class="row gx-4 gx-lg-5 justify-content-center">
-
-      <div class="col-md-12 col-lg-6 col-xl-6">
-        <form class="row g-3 userDetails"
-          action="/drivers/updateGDriver#personal"
-          method="POST">
-          <%- include ('components/updateForm'); -%>
-
-        </form>
-      </div>
-
-      <div class="col-md-10 col-lg-6 col-xl-6 order-first">
-        <% if(appointmentDetail && appointmentType === "G") { %>
-        <% if(testResult.testResult) { %>
-        <%- include ('components/testResultDisplay') %>
-        <% } else if (!testResult.testResult) { %>
-        <%- include ('components/appointmentsDisplay'); -%>
-        <% } %>
-        <% } %>
-
-
-
-        <% if( !appointmentDetail ) { %>
-        <h2>Available Time Slots</h2>
-        <%- include ('components/appointmentBookingForm'); -%>
-        <% } %>
-      </div>
-
-    </div>
-  </div>
-  <% } %>
-
-  <!-- Main Content-->
-  <% if(!driver){ %>
-  <div class="container px-4 px-lg-5 mb-5">
-    <div class="row gx-4 gx-lg-5 justify-content-center">
-      <div class="col-md-10 col-lg-8 col-xl-7">
-        <%- include ('components/newDriverForm'); -%>
-        <script>
-          document.addEventListener( 'DOMContentLoaded', () => {
-            const formEle = document.getElementById( 'newDriverForm' )
-            formEle.addEventListener( 'submit', () => {
-              const page = document.createElement( 'input' )
-              page.name = "page"
-              page.value = "g"
-              page.style.visibility = "hidden"
-              page.style.position = "absolute"
-              formEle.appendChild( page )
-            } )
-          } )
-        </script>
+        <div class="col-md-10 col-lg-6 col-xl-6 order-first">
+          <% if(appointmentDetail && appointmentType === "G") { %> <% if(testResult.testResult) { %> <%- include ('components/testResultDisplay') %> <% } else if (!testResult.testResult) { %> <%- include ('components/appointmentsDisplay'); -%> <% } %> <% } %> <% if( !appointmentDetail ) { %>
+          <h2>Available Time Slots</h2>
+          <%- include ('components/appointmentBookingForm'); -%>
+          <% } %>
+        </div>
       </div>
     </div>
-  </div>
-  <% } %>
+    <% } %>
 
+    <!-- Main Content-->
+    <% if(!driver){ %>
+    <div class="container px-4 px-lg-5 mb-5">
+      <div class="row gx-4 gx-lg-5 justify-content-center">
+        <div class="col-md-10 col-lg-8 col-xl-7">
+          <%- include ('components/newDriverForm'); -%>
+          <script>
+            document.addEventListener("DOMContentLoaded", () => {
+              const formEle = document.getElementById("newDriverForm");
+              formEle.addEventListener("submit", () => {
+                const page = document.createElement("input");
+                page.name = "page";
+                page.value = "g";
+                page.style.visibility = "hidden";
+                page.style.position = "absolute";
+                formEle.appendChild(page);
+              });
+            });
+          </script>
+        </div>
+      </div>
+    </div>
+    <% } %>
 
-  <div id="serverTime"
-    style="display:none"><%= serverTime %></div>
+    <div
+      id="serverTime"
+      style="display: none"
+    >
+      <%= serverTime %>
+    </div>
 
-  <%- include('../components/custom-alerts.ejs'); -%>
-  <%- include ('../layouts/footer.ejs'); -%>
-  <%- include ('../layouts/scripts.ejs'); -%>
-  <script src="/js/activate-btn.js"></script>
-  <% if( !appointmentDetail && driver ) { %>
-  <!-- datepicker setup requires input element with server time as value -->
-  <script src="/js/datepicker-init.js"></script>
-  <script>
+    <%- include('../components/custom-alerts.ejs'); -%>
+    <%- include ('../layouts/footer.ejs'); -%>
+    <%- include ('../layouts/scripts.ejs'); -%>
+    <script src="/js/activate-btn.js"></script>
+    <% if( !appointmentDetail && driver ) { %>
+    <!-- datepicker setup requires input element with server time as value -->
+    <script src="/js/datepicker-init.js"></script>
+    <script>
+      // form submission for creating appointment slot
+      const form = document.querySelector("form.bookAppointment");
+      form.addEventListener("submit", (event) => {
+        // submit event detected
+        event.preventDefault();
 
-    // form submission for creating appointment slot
-    const form = document.querySelector( 'form.bookAppointment' )
-    form.addEventListener( 'submit', event => {
-      // submit event detected
-      event.preventDefault()
+        // picker.viewDate is the selected date in date picker
+        const calDate = picker.viewDate;
 
-      // picker.viewDate is the selected date in date picker
-      const calDate = picker.viewDate
+        // Create an input element for appointment date
+        var AD1 = document.createElement("input");
+        AD1.setAttribute("type", "text");
+        AD1.setAttribute("name", "appointmentDate");
+        AD1.setAttribute("value", `${calDate.getMonth() + 1}/${calDate.getDate()}/${calDate.getFullYear()}`);
+        AD1.style.display = "none";
 
-      // Create an input element for appointment date
-      var AD1 = document.createElement( "input" )
-      AD1.setAttribute( "type", "text" )
-      AD1.setAttribute( "name", "appointmentDate" )
-      AD1.setAttribute( "value", `${ calDate.getMonth() + 1 }/${ calDate.getDate() }/${ calDate.getFullYear() }` )
-      AD1.style.display = "none"
+        // Create an input element for appointment type G2/G
+        var AD2 = document.createElement("input");
+        AD2.setAttribute("type", "text");
+        AD2.setAttribute("name", "appointmentType");
+        AD2.setAttribute("value", "G");
+        AD2.style.display = "none";
 
-      // Create an input element for appointment type G2/G
-      var AD2 = document.createElement( "input" )
-      AD2.setAttribute( "type", "text" )
-      AD2.setAttribute( "name", "appointmentType" )
-      AD2.setAttribute( "value", "G" )
-      AD2.style.display = "none"
+        // Append the appointment date input to the form
+        form.appendChild(AD1);
+        form.appendChild(AD2);
+        form.submit();
 
-      // Append the appointment date input to the form
-      form.appendChild( AD1 )
-      form.appendChild( AD2 )
-      form.submit()
+        AD.remove();
+      });
 
-      AD.remove()
-    } )
+      // appointment slot logic
+      // these radio buttons are displayed when the appointment slots exist
+      const aptTimeRadioButtons = document.getElementsByName("appointmentTime");
 
+      // success, fail, handleResponseError functions for fetch api reteiving appointment timings for selected date
+      const handleResponseError = (response) => {
+        if (!response.ok) {
+          //response.ok is true even when url in wrong format i.e. response body not as expected
+          throw response.status + ": " + response.statusText;
+        }
+        return response.json();
+      };
 
-    // appointment slot logic
-    // these radio buttons are displayed when the appointment slots exist
-    const aptTimeRadioButtons = document.getElementsByName( "appointmentTime" )
+      const fail = (error) => {
+        console.log("Unable to make a request to API " + error);
+        alert("Unable to retrieve appointment slots from API");
+      };
 
-    // success, fail, handleResponseError functions for fetch api reteiving appointment timings for selected date 
-    const handleResponseError = ( response ) => {
-      if( !response.ok ) {
-        //response.ok is true even when url in wrong format i.e. response body not as expected
-        throw response.status + ": " + response.statusText
-      }
-      return response.json()
-    }
+      const succeed = (data) => {
+        aptTimeRadioButtons.forEach((rb) => {
+          data.appointment.forEach((apt) => {
+            if (apt.isTimeSlotAvailable) if (rb.value === apt.appointmentTime) rb.removeAttribute("disabled");
+          });
+        });
+      };
 
-    const fail = ( error ) => {
-      console.log( "Unable to make a request to API " + error )
-      alert( "Unable to retrieve appointment slots from API" )
-    }
+      // fired when a date is selected on the datepicker - gets appointments times for the day
+      picker.subscribe(tempusDominus.Namespace.events.change, (e) => {
+        // radio buttons may have been enabled from previous event triggered
+        aptTimeRadioButtons.forEach((rb) => {
+          rb.setAttribute("disabled", true);
+        });
 
-    const succeed = ( data ) => {
-      aptTimeRadioButtons.forEach( rb => {
-        data.appointment.forEach( apt => {
-          if( apt.isTimeSlotAvailable )
-            if( rb.value === apt.appointmentTime )
-              rb.removeAttribute( 'disabled' )
-        } )
-      } )
-    }
+        const selectedDate = e.date
+          .toLocaleString("en", {
+            timeZone: "America/Toronto",
+          })
+          .split(",")[0];
 
-    // fired when a date is selected on the datepicker - gets appointments times for the day
-    picker.subscribe( tempusDominus.Namespace.events.change, ( e ) => {
-      // radio buttons may have been enabled from previous event triggered
-      aptTimeRadioButtons.forEach( rb => {
-        rb.setAttribute( 'disabled', true )
-      } )
+        const url = window.location.origin + `/admins/appointments/${selectedDate}`;
+        fetch(url)
+          .then((response) => handleResponseError(response))
+          .then((data) => succeed(data))
+          .catch((error) => fail(error));
+      });
 
-      const selectedDate = e.date.toLocaleString( 'en', {
-        timeZone: 'America/Toronto'
-      } ).split( ',' )[ 0 ]
+      // displaying radio buttons for appointments available for current day on page load
+      const presentDate = new Date(picker.viewDate)
+        .toLocaleString("en", {
+          timeZone: "America/Toronto",
+        })
+        .split(",")[0];
+      const url = window.location.origin + `/admins/appointments/${presentDate}`;
+      fetch(url)
+        .then((response) => handleResponseError(response))
+        .then((data) => succeed(data))
+        .catch((error) => fail(error));
 
-      const url = window.location.origin + `/admins/appointments/${ selectedDate }`
-      fetch( url )
-        .then( ( response ) => handleResponseError( response ) )
-        .then( ( data ) => succeed( data ) )
-        .catch( ( error ) => fail( error ) )
-    } )
+      // disabling radio buttons with time less than new Date( minDateText )
+      const serverTime = new Date(document.getElementById("serverTime").textContent);
+      const serverTimeFormatted = `0${serverTime.getHours()}:${serverTime.getMinutes()}`;
+      aptTimeRadioButtons.forEach((rb) => {
+        if (rb.value < serverTimeFormatted) {
+          rb.setAttribute("disabled", true);
+        }
+      });
+    </script>
+    <% } %>
 
-
-    // displaying radio buttons for appointments available for current day on page load
-    const presentDate = new Date( picker.viewDate ).toLocaleString( 'en', {
-      timeZone: 'America/Toronto'
-    } ).split( ',' )[ 0 ]
-    const url = window.location.origin + `/admins/appointments/${ presentDate }`
-    fetch( url )
-      .then( ( response ) => handleResponseError( response ) )
-      .then( ( data ) => succeed( data ) )
-      .catch( ( error ) => fail( error ) )
-
-
-    // disabling radio buttons with time less than new Date( minDateText )
-    const serverTime = new Date( document.getElementById( "serverTime" ).textContent )
-    const serverTimeFormatted = `0${ serverTime.getHours() }:${ serverTime.getMinutes() }`
-    aptTimeRadioButtons.forEach( rb => {
-      if( rb.value < serverTimeFormatted ) {
-        rb.setAttribute( 'disabled', true )
-      }
-    } )
-  </script>
-  <% } %>
-
-  <% if( appointmentDetail && appointmentType === "G" ) { %>
-  <script src="/js/digital-clock-display.js"></script>
-  <% } %>
-</body>
-
+    <% if( appointmentDetail && appointmentType === "G" ) { %>
+    <script src="/js/digital-clock-display.js"></script>
+    <% } %>
+  </body>
 </html>

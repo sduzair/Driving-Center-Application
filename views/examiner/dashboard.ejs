@@ -1,52 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
-<%- include ('../layouts/header'); -%>
+  <%- include ('../layouts/header'); -%>
 
-<body>
-  <!-- Navigation-->
-  <%- include ('../layouts/nav'); -%>
-  <!-- Page Header-->
-  <header class="masthead"
-    style="background-image: url('/assets/mastheadImages/chuttersnap-hmWcrTxvAk0-unsplash.jpg');">
-    <div class="container position-relative px-8 px-lg-8">
-      <div class="row gx-6 gx-lg-8 justify-content-center">
-        <div class="col-md-10 col-lg-10 col-xl-10">
-          <div class="site-heading">
-            <h1>Welcome to Examiner Dashboard</h1>
-            <span class="subheading">See driver appointments</span>
+  <body>
+    <!-- Navigation-->
+    <%- include ('../layouts/nav'); -%>
+    <!-- Page Header-->
+    <header
+      class="masthead"
+      style="background-image: url('/assets/mastheadImages/chuttersnap-hmWcrTxvAk0-unsplash.jpg')"
+    >
+      <div class="container position-relative px-8 px-lg-8">
+        <div class="row gx-6 gx-lg-8 justify-content-center">
+          <div class="col-md-10 col-lg-10 col-xl-10">
+            <div class="site-heading">
+              <h1>Welcome to Examiner Dashboard</h1>
+              <span class="subheading">See driver appointments</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content-->
+    <div
+      class="container-xl mb-5"
+      id="asdf"
+    >
+      <div class="row justify-content-evenly">
+        <div class="col-xs-8 col-sm-8 col-md-6 col-lg-4 col-xl-4 mb-4">
+          <div
+            class="card myBoxShadow mx-auto"
+            style="width: 25rem"
+            data-aos="flip-left"
+          >
+            <a href="/examiners/appointments-page">
+              <img
+                src="/img/driverDash1.jpg"
+                class="card-img-top"
+                alt="beginner driver"
+              />
+              <div class="card-body">
+                <h5 class="card-title">Driver Appoinments</h5>
+                <p class="card-text">View scheduled driver tests/appointments and grade driver based on the test</p>
+              </div>
+            </a>
           </div>
         </div>
       </div>
     </div>
-  </header>
 
-  <!-- Main Content-->
-  <div class="container-xl mb-5" id="asdf">
-    <div class="row justify-content-evenly">
+    <%- include ('../components/custom-alerts.ejs'); -%>
 
-      <div class="col-xs-8 col-sm-8 col-md-6 col-lg-4 col-xl-4 mb-4">
-        <div class="card myBoxShadow mx-auto"
-          style="width:25rem;"
-          data-aos="flip-left">
-          <a href="/examiners/appointments-page">
-            <img src="/img/driverDash1.jpg"
-              class="card-img-top"
-              alt="beginner driver">
-            <div class="card-body">
-              <h5 class="card-title">Driver Appoinments</h5>
-              <p class="card-text">View scheduled driver tests/appointments and grade driver based on the test</p>
-            </div>
-          </a>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-  <%- include ('../components/custom-alerts.ejs'); -%>
-
-  <%- include ('../layouts/footer.ejs'); -%>
-  <%- include ('../layouts/scripts.ejs'); -%>
-</body>
-
+    <%- include ('../layouts/footer.ejs'); -%>
+    <%- include ('../layouts/scripts.ejs'); -%>
+  </body>
 </html>

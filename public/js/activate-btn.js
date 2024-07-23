@@ -1,5 +1,9 @@
-document.querySelectorAll( "form.userDetails input" ).forEach( ( inputElement ) => {
-  inputElement.addEventListener( "input", () => {
-    document.querySelector( "form.userDetails button[type=submit]" ).removeAttribute( 'disabled' )
-  } )
-} )
+for (const inputElement of document.querySelectorAll(
+	"form.userDetails input",
+)) {
+	inputElement.addEventListener("input", () => {
+		document
+			.querySelector("form.userDetails button[type=submit]")
+			.removeAttribute("disabled");
+	});
+}

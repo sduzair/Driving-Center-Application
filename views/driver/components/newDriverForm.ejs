@@ -1,27 +1,39 @@
-<form class="row g-3 userDetails"
+<form
+  class="row g-3 userDetails"
   id="newDriverForm"
   action="/drivers/recordDriver#personal"
   method="POST"
-  enctype="multipart/form-data">
+  enctype="multipart/form-data"
+>
   <!-- User details -->
   <h2 id="personal">Personal</h2>
   <div class="col-md-6">
-    <label for="firstName"
-      class="form-label">First Name</label>
-    <input type="text"
+    <label
+      for="firstName"
+      class="form-label"
+      >First Name</label
+    >
+    <input
+      type="text"
       class="form-control"
       id="firstName"
       name="firstName"
-      value="<%- data ? data.firstName : "" %>" />
+      value="<%- data ? data.firstName : '' %>"
+    />
   </div>
   <div class="col-md-6">
-    <label for="lastName"
-      class="form-label">Last Name</label>
-    <input type="text"
+    <label
+      for="lastName"
+      class="form-label"
+      >Last Name</label
+    >
+    <input
+      type="text"
       class="form-control"
       id="lastName"
       name="lastName"
-      value="<%- data ? data.lastName : "" %>" />
+      value="<%- data ? data.lastName : '' %>"
+    />
   </div>
   <!-- <div class="col-md-6">
             <label for="userID"
@@ -33,135 +45,204 @@
               value=" data ? data.userID : "" " />
           </div> -->
   <div class="col-md-6">
-    <label for="inputDOB"
-      class="form-label">Date of birth</label>
-    <input type="date"
+    <label
+      for="inputDOB"
+      class="form-label"
+      >Date of birth</label
+    >
+    <input
+      type="date"
       class="form-control"
       id="inputDOB"
       name="inputDOB"
-      value="<%- data ? data.inputDOB : "" %>" />
+      value="<%- data ? data.inputDOB : '' %>"
+    />
   </div>
   <!-- Divider-->
   <hr class="my-4" />
   <!-- Address -->
   <h2>Address</h2>
   <div class="col-md-4">
-    <label for="inputHouseNumber"
-      class="form-label">House Number</label>
-    <input type="number"
+    <label
+      for="inputHouseNumber"
+      class="form-label"
+      >House Number</label
+    >
+    <input
+      type="number"
       class="form-control"
       id="inputHouseNumber"
       name="inputHouseNumber"
-      value="<%- data ? data.inputHouseNumber : "" %>" />
+      value="<%- data ? data.inputHouseNumber : '' %>"
+    />
   </div>
   <div class="col-md-8">
-    <label for="inputStreet"
-      class="form-label">Street</label>
-    <input type="text"
+    <label
+      for="inputStreet"
+      class="form-label"
+      >Street</label
+    >
+    <input
+      type="text"
       class="form-control"
       id="inputStreet"
       name="inputStreet"
-      value="<%- data ? data.inputStreet : "" %>" />
+      value="<%- data ? data.inputStreet : '' %>"
+    />
   </div>
   <div class="col-md-5">
-    <label for="inputCity"
-      class="form-label">City</label>
-    <input type="text"
+    <label
+      for="inputCity"
+      class="form-label"
+      >City</label
+    >
+    <input
+      type="text"
       class="form-control"
       id="inputCity"
       name="inputCity"
-      value="<%- data ? data.inputCity : "" %>" />
+      value="<%- data ? data.inputCity : '' %>"
+    />
   </div>
   <div class="col-md-4">
-    <label for="inputProvince"
-      class="form-label">Province</label>
-    <input type="text"
+    <label
+      for="inputProvince"
+      class="form-label"
+      >Province</label
+    >
+    <input
+      type="text"
       class="form-control"
       id="inputProvince"
       name="inputProvince"
-      value="<%- data ? data.inputProvince : "" %>" />
+      value="<%- data ? data.inputProvince : '' %>"
+    />
   </div>
   <div class="col-md-3">
-    <label for="inputPostalCode"
-      class="form-label">Postal Code</label>
-    <input type="text"
+    <label
+      for="inputPostalCode"
+      class="form-label"
+      >Postal Code</label
+    >
+    <input
+      type="text"
       class="form-control"
       id="inputPostalCode"
       name="inputPostalCode"
-      value="<%- data ? data.inputPostalCode : "" %>" />
+      value="<%- data ? data.inputPostalCode : '' %>"
+    />
   </div>
   <!-- Divider-->
   <hr class="my-4" />
   <!-- Car details -->
   <h2>Car details</h2>
   <div class="col-md-6">
-    <label for="inputCarMake"
-      class="form-label">Make</label>
-    <input type="text"
+    <label
+      for="inputCarMake"
+      class="form-label"
+      >Make</label
+    >
+    <input
+      type="text"
       class="form-control"
       id="inputCarMake"
       name="inputCarMake"
-      value="<%- data ? data.inputCarMake : "" %>" />
+      value="<%- data ? data.inputCarMake : '' %>"
+    />
   </div>
   <div class="col-md-6">
-    <label for="inputCarModel"
-      class="form-label">Model</label>
-    <input type="text"
+    <label
+      for="inputCarModel"
+      class="form-label"
+      >Model</label
+    >
+    <input
+      type="text"
       class="form-control"
       id="inputCarModel"
       name="inputCarModel"
-      value="<%- data ? data.inputCarModel : "" %>" />
+      value="<%- data ? data.inputCarModel : '' %>"
+    />
   </div>
   <div class="col-md-6">
-    <label for="inputCarYear"
-      class="form-label">Year</label>
-    <input type="number"
+    <label
+      for="inputCarYear"
+      class="form-label"
+      >Year</label
+    >
+    <input
+      type="number"
       class="form-control"
       id="inputCarYear"
       name="inputCarYear"
-      value="<%- data ? data.inputCarYear : "" %>" />
+      value="<%- data ? data.inputCarYear : '' %>"
+    />
   </div>
   <div class="col-md-6">
-    <label for="inputCarPlatNumber"
-      class="form-label">Plat Number</label>
-    <input type="number"
+    <label
+      for="inputCarPlatNumber"
+      class="form-label"
+      >Plat Number</label
+    >
+    <input
+      type="number"
       class="form-control"
       id="inputCarPlatNumber"
       name="inputCarPlatNumber"
-      value="<%- data ? data.inputCarPlatNumber : "" %>" />
+      value="<%- data ? data.inputCarPlatNumber : '' %>"
+    />
   </div>
   <div class="col-md-12">
-    <label for="inputCarLicenceNumber"
-      class="form-label">Licence Number</label>
-    <input type="text"
+    <label
+      for="inputCarLicenceNumber"
+      class="form-label"
+      >Licence Number</label
+    >
+    <input
+      type="text"
       class="form-control"
       id="inputCarLicenceNumber"
       placeholder="Must be 8 characters (alphanumeric)"
       name="inputCarLicenceNumber"
-      value="<%- data ? data.inputCarLicenceNumber : "" %>" />
+      value="<%- data ? data.inputCarLicenceNumber : '' %>"
+    />
   </div>
   <!-- Divider-->
   <hr class="my-4" />
   <!-- insert images -->
   <div class="col-md-6">
-    <label for="image1"
-      class="form-label">Image 1</label>
-    <input type="file"
+    <label
+      for="image1"
+      class="form-label"
+      >Image 1</label
+    >
+    <input
+      type="file"
       class="form-control"
       id="image1"
-      name="image1" />
+      name="image1"
+    />
   </div>
   <div class="col-md-6">
-    <label for="image2"
-      class="form-label">Image 2</label>
-    <input type="file"
+    <label
+      for="image2"
+      class="form-label"
+      >Image 2</label
+    >
+    <input
+      type="file"
       class="form-control"
       id="image2"
-      name="image2" />
+      name="image2"
+    />
   </div>
   <div class="col-12">
-    <button type="submit"
+    <button
+      type="submit"
       class="btn btn-primary"
-      data-aos="flip-up">Submit</button>
+      data-aos="flip-up"
+    >
+      Submit
+    </button>
   </div>
 </form>

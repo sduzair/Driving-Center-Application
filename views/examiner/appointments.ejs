@@ -1,279 +1,324 @@
 <!DOCTYPE html>
 <html lang="en">
-<%- include ('../layouts/header'); -%>
+  <%- include ('../layouts/header'); -%>
 
-<head>
-  <link href="/css/user-profiles.css"
-    rel="stylesheet">
-</head>
+  <head>
+    <link
+      href="/css/user-profiles.css"
+      rel="stylesheet"
+    />
+  </head>
 
-<body>
-  <!-- Navigation-->
-  <%- include ('../layouts/nav'); -%>
-  <!-- Page Header-->
-  <header class="masthead"
-    style="background-image: url('/assets/mastheadImages/chuttersnap-hmWcrTxvAk0-unsplash.jpg');">
-    <div class="container position-relative px-8 px-lg-8">
-      <div class="row gx-6 gx-lg-8 justify-content-center">
-        <div class="col-md-10 col-lg-10 col-xl-10">
-          <div class="site-heading">
-            <h1>Appointments</h1>
-            <span class="subheading">View appointment details of drivers</span>
+  <body>
+    <!-- Navigation-->
+    <%- include ('../layouts/nav'); -%>
+    <!-- Page Header-->
+    <header
+      class="masthead"
+      style="background-image: url('/assets/mastheadImages/chuttersnap-hmWcrTxvAk0-unsplash.jpg')"
+    >
+      <div class="container position-relative px-8 px-lg-8">
+        <div class="row gx-6 gx-lg-8 justify-content-center">
+          <div class="col-md-10 col-lg-10 col-xl-10">
+            <div class="site-heading">
+              <h1>Appointments</h1>
+              <span class="subheading">View appointment details of drivers</span>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </header>
+    </header>
 
-  <!-- Main Content-->
-  <div id="filtered"
-    class="container mb-5">
-    <div class="col-12">
-      <div class="row justify-content-xl-end justify-content-center">
-        <div
-          class="col-auto text-center text-xl-end d-flex align-items-center justify-content-xl-end justify-content-center">
-          Filter by:
-        </div>
-        <div class="col-auto text-center text-xl-end">
-          <div class="btn-group"
-            role="group"
-            aria-label="Basic example">
-            <input onclick="window.location='/examiners/fetchAppointments/G2#filtered';"
-              type="radio"
-              class="btn-check"
-              name="filterType"
-              value="G2"
-              id="byG2"
-              autocomplete="off"
-              <%= filteredBy == "G2" ? 'checked' : '' %>>
-            <label class="btn btn-outline-success"
-              for="byG2">G2</label>
-            <input onclick="window.location='/examiners/fetchAppointments/G#filtered';"
-              type="radio"
-              class="btn-check"
-              name="filterType"
-              value="G"
-              id="byG"
-              autocomplete="off"
-              <%= filteredBy == "G" ? 'checked' : '' %>>
-            <label class="btn btn-outline-success"
-              for="byG">G</label>
-            <input onclick="window.location='/examiners/appointments-page#filtered';"
-              type="radio"
-              class="btn-check"
-              name="filterType"
-              id="byNone"
-              autocomplete="off"
-              <%= filteredBy ? '' : 'checked' %>>
-            <label class="btn btn-outline-success"
-              for="byNone">None</label>
+    <!-- Main Content-->
+    <div
+      id="filtered"
+      class="container mb-5"
+    >
+      <div class="col-12">
+        <div class="row justify-content-xl-end justify-content-center">
+          <div class="col-auto text-center text-xl-end d-flex align-items-center justify-content-xl-end justify-content-center">Filter by:</div>
+          <div class="col-auto text-center text-xl-end">
+            <div
+              class="btn-group"
+              role="group"
+              aria-label="Basic example"
+            >
+              <input onclick="window.location='/examiners/fetchAppointments/G2#filtered';" type="radio" class="btn-check" name="filterType" value="G2" id="byG2" autocomplete="off" <%= filteredBy == "G2" ? 'checked' : '' %>>
+              <label
+                class="btn btn-outline-success"
+                for="byG2"
+                >G2</label
+              >
+              <input onclick="window.location='/examiners/fetchAppointments/G#filtered';" type="radio" class="btn-check" name="filterType" value="G" id="byG" autocomplete="off" <%= filteredBy == "G" ? 'checked' : '' %>>
+              <label
+                class="btn btn-outline-success"
+                for="byG"
+                >G</label
+              >
+              <input onclick="window.location='/examiners/appointments-page#filtered';" type="radio" class="btn-check" name="filterType" id="byNone" autocomplete="off" <%= filteredBy ? '' : 'checked' %>>
+              <label
+                class="btn btn-outline-success"
+                for="byNone"
+                >None</label
+              >
+            </div>
           </div>
         </div>
       </div>
 
       <div class="row justify-content-xl-end justify-content-center mt-3">
-        <div
-          class="col-auto text-center text-xl-end d-flex align-items-center justify-content-xl-end justify-content-center">
-          Sort by:
-        </div>
+        <div class="col-auto text-center text-xl-end d-flex align-items-center justify-content-xl-end justify-content-center">Sort by:</div>
         <div class="col-auto text-center text-xl-end">
-          <div class="btn-group"
+          <div
+            class="btn-group"
             role="group"
-            aria-label="Basic example">
-            <input type="radio"
+            aria-label="Basic example"
+          >
+            <input
+              type="radio"
               class="btn-check"
               name="sort"
               id="byDates"
-              autocomplete="off">
-            <label class="btn btn-outline-success"
-              for="byDates">Dates</label>
-            <input type="radio"
+              autocomplete="off"
+            />
+            <label
+              class="btn btn-outline-success"
+              for="byDates"
+              >Dates</label
+            >
+            <input
+              type="radio"
               class="btn-check"
               name="sort"
               id="byName"
-              autocomplete="off">
-            <label class="btn btn-outline-success"
-              for="byName">Name</label>
+              autocomplete="off"
+            />
+            <label
+              class="btn btn-outline-success"
+              for="byName"
+              >Name</label
+            >
           </div>
         </div>
       </div>
     </div>
-  </div>
 
-
-  <!-- user cards -->
-  <div class="container-xl mb-5">
-    <div class="row justify-content-center ">
-      <% if(driversObj) for(var i = 0; i < driversObj.length; i++) { %>
-      <div class="col-10 col-sm-8 col-md-8 col-lg-6 col-xl-5"
-        data-aos="fade-in"
-        data-aos-delay="<%- (i % 2 == 0) ? "0" : "100" %>">
-        <div class="card user-card-full">
-          <div class="row m-l-0 m-r-0">
-            <div class="col-sm-4 bg-c-lite-green user-profile">
-              <div class="card-block text-center text-white">
-                <div>
-                  <img src="/assets/icons/user.png"
-                    class="img-radius"
-                      alt="User-Profile-Image">
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-8 ">
-              <div class="row mx-1">
-                <div class="card-block">
-                  <div class="row row-cols-2 gx-1 justify-content-between">
-                    <div class="col">
-                      <p class="row">Name:</p>
-                      <p class="row mx-1 small-font"><mark><%- driversObj[i].firstName %> <%- driversObj[i].lastName %>
-                        </mark></p>
-                    </div>
-                    <div class="col">
-                      <p class="row">Test:</p>
-                      <p class="row mx-1 small-font"><mark><%- driversObj[i].appointmentType %></mark></p>
-
-                    </div>
-                    <div class="col">
-                      <p class="row">Time:</p>
-                      <p class="row mx-1 small-font"><mark><%- driversObj[i].appointmentID.appointmentTime %></mark></p>
-                    </div>
-                    <div class="col">
-                      <p class="row">Date:</p>
-                      <p class="row mx-1 small-font"><mark><%- driversObj[i].appointmentID.appointmentDate %></mark></p>
-                    </div>
-                    <div class="col">
-                      <p class="row">Car Make:</p>
-                      <p class="row mx-1 small-font"><mark><%- driversObj[i].carMake %></mark></p>
-
-                    </div>
-                    <div class="col">
-                      <p class="row">Plate Number:</p>
-                      <p class="row mx-1 small-font"><mark><%- driversObj[i].carPlatNumber %></mark></p>
-
-                    </div>
+    <!-- user cards -->
+    <div class="container-xl mb-5">
+      <div class="row justify-content-center">
+        <% if(driversObj) for(var i = 0; i < driversObj.length; i++) { %>
+        <div
+          class="col-10 col-sm-8 col-md-8 col-lg-6 col-xl-5"
+          data-aos="fade-in"
+          data-aos-delay="<%- (i % 2 == 0) ? '0' : '100' %>"
+        >
+          <div class="card user-card-full">
+            <div class="row m-l-0 m-r-0">
+              <div class="col-sm-4 bg-c-lite-green user-profile">
+                <div class="card-block text-center text-white">
+                  <div>
+                    <img
+                      src="/assets/icons/user.png"
+                      class="img-radius"
+                      alt="User-Profile-Image"
+                    />
                   </div>
                 </div>
               </div>
-              <div class="row justify-content-center justify-content-sm-end m-auto">
-                <div class="col-4 col-sm-4 justify-content-center ">
-                  <button class="btn btn-primary"
-                    data-bs-toggle="modal"
-                    data-bs-target="#gradeModel"
-                    driverID="<%- driversObj[i]._id %>"
-                    driverName="<%- driversObj[i].firstName %> <%- driversObj[i].lastName %>">Grade</button>
+              <div class="col-sm-8">
+                <div class="row mx-1">
+                  <div class="card-block">
+                    <div class="row row-cols-2 gx-1 justify-content-between">
+                      <div class="col">
+                        <p class="row">Name:</p>
+                        <p class="row mx-1 small-font">
+                          <mark
+                            ><%- driversObj[i].firstName %>
+                            <%- driversObj[i].lastName %>
+                          </mark>
+                        </p>
+                      </div>
+                      <div class="col">
+                        <p class="row">Test:</p>
+                        <p class="row mx-1 small-font">
+                          <mark><%- driversObj[i].appointmentType %></mark>
+                        </p>
+                      </div>
+                      <div class="col">
+                        <p class="row">Time:</p>
+                        <p class="row mx-1 small-font">
+                          <mark><%- driversObj[i].appointmentID.appointmentTime %></mark>
+                        </p>
+                      </div>
+                      <div class="col">
+                        <p class="row">Date:</p>
+                        <p class="row mx-1 small-font">
+                          <mark><%- driversObj[i].appointmentID.appointmentDate %></mark>
+                        </p>
+                      </div>
+                      <div class="col">
+                        <p class="row">Car Make:</p>
+                        <p class="row mx-1 small-font">
+                          <mark><%- driversObj[i].carMake %></mark>
+                        </p>
+                      </div>
+                      <div class="col">
+                        <p class="row">Plate Number:</p>
+                        <p class="row mx-1 small-font">
+                          <mark><%- driversObj[i].carPlatNumber %></mark>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row justify-content-center justify-content-sm-end m-auto">
+                  <div class="col-4 col-sm-4 justify-content-center">
+                    <button
+                      class="btn btn-primary"
+                      data-bs-toggle="modal"
+                      data-bs-target="#gradeModel"
+                      driverID="<%- driversObj[i]._id %>"
+                      driverName="<%- driversObj[i].firstName %> <%- driversObj[i].lastName %>"
+                    >
+                      Grade
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
+        <% } %>
       </div>
-      <% } %>
-
-
-
     </div>
-  </div>
 
+    <!-- MODAL -->
+    <div
+      class="modal fade"
+      id="gradeModel"
+      tabindex="-1"
+      aria-labelledby="gradeModelLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-fullscreen-md-down modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5
+              class="modal-title"
+              id="gradeModelLabel"
+            >
+              Test results
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
 
-  <!-- MODAL -->
-  <div class="modal fade"
-    id="gradeModel"
-    tabindex="-1"
-    aria-labelledby="gradeModelLabel"
-    aria-hidden="true">
-    <div class="modal-dialog modal-fullscreen-md-down modal-dialog-centered modal-dialog-scrollable">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title"
-            id="gradeModelLabel">Test results</h5>
-          <button type="button"
-            class="btn-close"
-            data-bs-dismiss="modal"
-            aria-label="Close"></button>
-        </div>
+          <div class="modal-body">
+            <form
+              id="formTestResult"
+              action="/examiners/update/driver/feedback#filtered"
+              method="post"
+            >
+              <div class="mb-3">
+                <div
+                  class="btn-group"
+                  role="group"
+                  aria-label="Basic example"
+                >
+                  <input
+                    type="radio"
+                    class="btn-check"
+                    name="testResult"
+                    value="true"
+                    id="pass"
+                    autocomplete="off"
+                  />
+                  <label
+                    class="btn btn-outline-success"
+                    for="pass"
+                    >Pass</label
+                  >
 
-        <div class="modal-body">
-          <form id="formTestResult"
-            action="/examiners/update/driver/feedback#filtered"
-            method="post">
-            <div class="mb-3">
-              <div class="btn-group"
-                role="group"
-                aria-label="Basic example">
-
-                <input type="radio"
-                  class="btn-check"
-                  name="testResult"
-                  value="true"
-                  id="pass"
-                  autocomplete="off">
-                <label class="btn btn-outline-success"
-                  for="pass">Pass</label>
-
-                <input type="radio"
-                  class="btn-check"
-                  name="testResult"
-                  value="false"
-                  id="fail"
-                  autocomplete="off">
-                <label class="btn btn-outline-danger"
-                  for="fail">Fail</label>
+                  <input
+                    type="radio"
+                    class="btn-check"
+                    name="testResult"
+                    value="false"
+                    id="fail"
+                    autocomplete="off"
+                  />
+                  <label
+                    class="btn btn-outline-danger"
+                    for="fail"
+                    >Fail</label
+                  >
+                </div>
               </div>
-            </div>
-            <div class="mb-3">
-              <label for="message-text"
-                class="col-form-label">Message:</label>
-              <textarea class="form-control"
-                id="message-text"
-                name="examinerComment"
-                rows="9"></textarea>
-            </div>
-            <button type="submit"
-              class="btn btn-primary">Submit</button>
-
-          </form>
+              <div class="mb-3">
+                <label
+                  for="message-text"
+                  class="col-form-label"
+                  >Message:</label
+                >
+                <textarea
+                  class="form-control"
+                  id="message-text"
+                  name="examinerComment"
+                  rows="9"
+                ></textarea>
+              </div>
+              <button
+                type="submit"
+                class="btn btn-primary"
+              >
+                Submit
+              </button>
+            </form>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <%- include ('../components/custom-alerts.ejs'); -%>
+    <%- include ('../components/custom-alerts.ejs'); -%>
 
-  <%- include ('../layouts/footer.ejs'); -%>
-  <%- include ('../layouts/scripts.ejs'); -%>
-  <script>
-    document.addEventListener( 'DOMContentLoaded', () => {
-      var gradeModel = document.getElementById( 'gradeModel' )
-      gradeModel.addEventListener( 'show.bs.modal', function( event ) {
-        // Button that triggered the modal
-        var button = event.relatedTarget
-        // Extract info from attributes
-        var driverID = button.getAttribute( 'driverID' )
+    <%- include ('../layouts/footer.ejs'); -%>
+    <%- include ('../layouts/scripts.ejs'); -%>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        var gradeModel = document.getElementById("gradeModel");
+        gradeModel.addEventListener("show.bs.modal", function (event) {
+          // Button that triggered the modal
+          var button = event.relatedTarget;
+          // Extract info from attributes
+          var driverID = button.getAttribute("driverID");
 
-        var element = document.createElement( "input" )
+          var element = document.createElement("input");
 
-        //Assign different attributes to the element.
-        element.setAttribute( "value", driverID )
-        element.setAttribute( "name", "_id" )
-        element.setAttribute( "type", "hidden" )
+          //Assign different attributes to the element.
+          element.setAttribute("value", driverID);
+          element.setAttribute("name", "_id");
+          element.setAttribute("type", "hidden");
 
-        document.getElementById( "formTestResult" ).appendChild( element )
+          document.getElementById("formTestResult").appendChild(element);
 
-        var driverName = button.getAttribute( 'driverName' )
-        // Update the modal's content.
-        var modalTitle = gradeModel.querySelector( '.modal-title' )
+          var driverName = button.getAttribute("driverName");
+          // Update the modal's content.
+          var modalTitle = gradeModel.querySelector(".modal-title");
 
-        modalTitle.textContent = 'Test results for ' + driverName
-      } )
-    } )
-  </script>
-  <script>
-    // test result submit form
-    function submitFormTestResult() {
-      console.log( document.getElementById( "formTestResult" ).values() )
-      document.getElementById( "formTestResult" ).submit()
-    }
-  </script>
-</body>
-
+          modalTitle.textContent = "Test results for " + driverName;
+        });
+      });
+    </script>
+    <script>
+      // test result submit form
+      function submitFormTestResult() {
+        console.log(document.getElementById("formTestResult").values());
+        document.getElementById("formTestResult").submit();
+      }
+    </script>
+  </body>
 </html>

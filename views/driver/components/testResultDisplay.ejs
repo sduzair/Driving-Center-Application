@@ -1,17 +1,15 @@
 <h2>Result</h2>
 <div
   class="mx-auto mt-4 <%= testResult.testResult ? 'bg-success border-success datetime2' : 'bg-danger border-danger color-white datetime3' %> bg-gradient"
-  data-aos="zoom-out-up">
+  data-aos="zoom-out-up"
+>
   <div>
-    <span
-      class="time <%= testResult.testResult ? 'bg-success border-success' : 'bg-danger border-danger color-white' %>"><%- testResult.testResult ? 'Pass' : 'Fail'%></span>
+    <span class="time <%= testResult.testResult ? 'bg-success border-success' : 'bg-danger border-danger color-white' %>"><%- testResult.testResult ? 'Pass' : 'Fail'%></span>
   </div>
 </div>
 <div class="mx-auto mt-4">
   <h2>Examiner Comment:</h2>
   <blockquote class="blockquote mx-auto d-flex justify-content-center">
-    <p class="lead ">
-      '<%= testResult.examinerComment %>'
-    </p>
+    <p class="lead">'<%= testResult.examinerComment %>'</p>
   </blockquote>
 </div>
