@@ -1,0 +1,12 @@
+services:
+  drivingtestcenterapplicationproject:
+    image: drivingtestcenterapplicationproject
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    env_file:
+      - .env
+    environment:
+      PORT: ${PORT:-3000}
+    ports:
+      - ${PORT:-3000}:${PORT:-3000}

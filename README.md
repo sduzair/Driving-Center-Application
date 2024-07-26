@@ -6,6 +6,7 @@
     - [Dev Environment](#dev-environment)
       - [Formatting and Linting](#formatting-and-linting)
       - [Database](#database)
+    - [With Docker](#with-docker)
   - [Requirements](#requirements)
     - [Mainly entire application consists of following parts](#mainly-entire-application-consists-of-following-parts)
     - [Node Project Setup and Add Routing](#node-project-setup-and-add-routing)
@@ -19,6 +20,12 @@
 ## Development
 
 ### Environment Variables
+
+- Copy the [.env.template](.env.template) file to `.env`:
+
+```sh
+cp .env.template .env
+```
 
 - Fill in the required values in the .env file.
 
@@ -49,6 +56,21 @@ npm run dev:start
 #### Database
 
 The application uses a MongoDB database (M0 Sandbox tier) deployed on Azure in Toronto (Canada Central).
+
+### With Docker
+
+- To build and run docker container
+
+```sh
+# env variables are auto detected from .env file
+docker compose up -d --build
+```
+
+- To stop the container
+
+```sh
+docker compose down
+```
 
 ## Requirements
 
