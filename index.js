@@ -29,32 +29,8 @@ module.exports = {
 const __isprod__ = NODE_ENV === "production";
 
 //middleware for validation
-const validateUserSignup = require("./middleware/validateSignup");
-const validateUserLogin = require("./middleware/validateLogin");
-const driverAuthentication = require("./middleware/driverAuthentication");
-const redirectIfAuthenticated = require("./middleware/redirectIfAuthenticated");
-const adminAuthentication = require("./middleware/adminAuthentication");
-const adminDriverAuthentication = require("./middleware/driverAdminAuthentication");
-const examinerAuthentication = require("./middleware/examinerAuthentication");
 //importing controllers
 const driverFetch = require("./controllers/driverFetch");
-const driverNew = require("./controllers/driverNew");
-const pageHome = require("./controllers/home");
-const pageDriverDashboard = require("./controllers/pageDashboard");
-const pageG = require("./controllers/pageG");
-const pageG2 = require("./controllers/pageG2");
-const pageSignup = require("./controllers/pageSignup");
-const pageLogin = require("./controllers/pageLogin");
-const userSignup = require("./controllers/userSignup");
-const userLogin = require("./controllers/userLogin");
-const userLogout = require("./controllers/userLogout");
-const pageAdminDashboard = require("./controllers/pageAdminDashboard");
-const pageAdminAppointment = require("./controllers/pageAdminAppointment");
-const appointmentNew = require("./controllers/appointmentNew");
-const appointmentsFetch = require("./controllers/appointmentsFetch");
-const driverBookAppointment = require("./controllers/driverBookAppointment");
-const pageExaminerDashboard = require("./controllers/pageExaminerDashboard");
-const driverFeedbackUpdate = require("./controllers/driverFeedbackUpdate");
 const app = express();
 app.set("view engine", "ejs");
 app.use(express.static("public"));
@@ -77,13 +53,16 @@ app.use(
 );
 app.use(flash());
 
-app.use("/users/signup", validateUserSignup);
-app.use("/users/login", validateUserLogin);
+app.use("/users/signup", require("./middleware/validateSignup"));
+app.use("/users/login", require("./middleware/validateLogin"));
 // todo: add auth middleware
-app.use("/drivers/bookAppointment", adminDriverAuthentication);
+app.use(
+	"/drivers/bookAppointment",
+	require("./middleware/driverAdminAuthentication"),
+);
 
 global.loggedIn = null;
-app.use("*", (req, res, next) => {
+app.use("*", (req, _res, next) => {
 	loggedIn = req.session.userType;
 	next();
 });
@@ -101,81 +80,132 @@ mongoose.connect(
 // driver authentication prevents any user other than 'Driver' from access
 app.post(
 	"/drivers/updateG2Driver",
-	driverAuthentication,
+	require("./middleware/driverAuthentication"),
 	require("./controllers/driverG2Update"),
 );
 
 app.post(
 	"/drivers/updateGDriver",
-	driverAuthentication,
+	require("./middleware/driverAuthentication"),
 	require("./controllers/driverGUpdate"),
 );
 
 // app.post( "/driver/driver-details", driverAuthentication, driverFetch )
 
-app.post("/drivers/recordDriver", driverAuthentication, driverNew);
+app.post(
+	"/drivers/recordDriver",
+	require("./middleware/driverAuthentication"),
+	require("./controllers/driverNew"),
+);
 
-app.get("/", pageHome);
+app.get("/", require("./controllers/home"));
 
-app.get("/index", pageHome);
+app.get("/index", require("./controllers/home"));
 
-app.get("/drivers/dashboard-page", driverAuthentication, pageDriverDashboard);
+app.get(
+	"/drivers/dashboard-page",
+	require("./middleware/driverAuthentication"),
+	require("./controllers/pageDashboard"),
+);
 
-app.get("/drivers/g2-page", driverAuthentication, pageG2);
+app.get(
+	"/drivers/g2-page",
+	require("./middleware/driverAuthentication"),
+	require("./controllers/pageG2"),
+);
 
-app.get("/drivers/g-page", driverAuthentication, pageG);
+app.get(
+	"/drivers/g-page",
+	require("./middleware/driverAuthentication"),
+	require("./controllers/pageG"),
+);
 
-app.get("/signup", redirectIfAuthenticated, pageSignup);
+app.get(
+	"/signup",
+	require("./middleware/redirectIfAuthenticated"),
+	require("./controllers/pageSignup"),
+);
 
-app.get("/login", redirectIfAuthenticated, pageLogin);
+app.get(
+	"/login",
+	require("./middleware/redirectIfAuthenticated"),
+	require("./controllers/pageLogin"),
+);
 
-app.post("/users/signup", redirectIfAuthenticated, userSignup);
+app.post(
+	"/users/signup",
+	require("./middleware/redirectIfAuthenticated"),
+	require("./controllers/userSignup"),
+);
 
-app.post("/users/login", redirectIfAuthenticated, userLogin);
+app.post(
+	"/users/login",
+	require("./middleware/redirectIfAuthenticated"),
+	require("./controllers/userLogin"),
+);
 
-app.get("/logout", userLogout);
+app.get("/logout", require("./controllers/userLogout"));
 
-app.get("/admins/dashboard-page", adminAuthentication, pageAdminDashboard);
+app.get(
+	"/admins/dashboard-page",
+	require("./middleware/adminAuthentication"),
+	require("./controllers/pageAdminDashboard"),
+);
 
-app.get("/admins/appointment-page", adminAuthentication, pageAdminAppointment);
+app.get(
+	"/admins/appointment-page",
+	require("./middleware/adminAuthentication"),
+	require("./controllers/pageAdminAppointment"),
+);
 
-app.post("/admins/appointments", adminAuthentication, appointmentNew);
+app.post(
+	"/admins/appointments",
+	require("./middleware/adminAuthentication"),
+	require("./controllers/appointmentNew"),
+);
 
-app.get("/admins/appointments/:month/:day/:year", appointmentsFetch);
+app.get(
+	"/admins/appointments/:month/:day/:year",
+	require("./controllers/appointmentsFetch"),
+);
 
 app.get(
 	"/admins/test-results-page",
-	adminAuthentication,
+	require("./middleware/adminAuthentication"),
 	require("./controllers/pageTestResults"),
 );
 
 app.post(
 	"/drivers/bookAppointment",
-	driverAuthentication,
-	driverBookAppointment,
+	require("./middleware/driverAuthentication"),
+	require("./controllers/driverBookAppointment"),
 );
 
-app.get("/examiners/dashboard", examinerAuthentication, pageExaminerDashboard);
+app.get(
+	"/examiners/dashboard",
+	require("./middleware/examinerAuthentication"),
+	require("./controllers/pageExaminerDashboard"),
+);
 
 app.get(
 	"/examiners/appointments-page",
-	examinerAuthentication,
+	require("./middleware/examinerAuthentication"),
 	require("./controllers/pageAppointments"),
 );
 
 app.get(
 	"/examiners/fetchAppointments/:filterType",
-	examinerAuthentication,
+	require("./middleware/examinerAuthentication"),
 	require("./controllers/examinerFetchByAptType"),
 );
 
 app.post(
 	"/examiners/update/driver/feedback",
-	examinerAuthentication,
-	driverFeedbackUpdate,
+	require("./middleware/examinerAuthentication"),
+	require("./controllers/driverFeedbackUpdate"),
 );
 
-app.use((req, res) => res.render("notfound"));
+app.use((_req, res) => res.render("notfound"));
 
 app.listen(Number.parseInt(PORT), () => {
 	console.log(`Listening on port: ${PORT}`);
