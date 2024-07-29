@@ -12319,6 +12319,31 @@ header.masthead .post-heading .meta a {
   }
 }
 
+/* All forms #################################################################################### */
+.needs-validation {
+  scroll-margin-top: 20px;
+}
+
+@keyframes showOutline {
+  0%,
+  100% {
+    outline: none;
+  }
+  1%,
+  99% {
+    outline: 1px solid #dc3545;
+  }
+}
+
+.was-validated:target {
+  animation: showOutline 0.5s ease;
+}
+
+/* Form with password-like input #################################################################################### */
+.input-group-text {
+  cursor: pointer;
+}
+
 /* Login form G2 #################################################################################### */
 .divider:after,
 .divider:before {
@@ -12856,6 +12881,12 @@ div.resFailDisplay {
 
 html {
   font-size: 0.8rem;
+}
+
+@media (prefers-reduced-motion: no—preference) {
+  html {
+    scroll-behavior: smooth;
+  }
 }
 
 /* 

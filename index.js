@@ -22,11 +22,11 @@ module.exports = {
 
 	SESS_NAME = "sid",
 	SESS_SECRET,
-	SESS_LIFETIME = 86400000,
+	SESS_LIFETIME = 1000 * 60 * 60 * 24 * 365, // 365 days
 	BCRYPT_SALT_ROUNDS = 10,
 } = process.env;
 
-const IN_PROD = NODE_ENV === "production";
+const __isprod__ = NODE_ENV === "production";
 
 //middleware for validation
 const validateUserSignup = require("./middleware/validateSignup");
@@ -71,7 +71,7 @@ app.use(
 		cookie: {
 			maxAge: Number.parseInt(SESS_LIFETIME),
 			sameSite: true,
-			secure: false,
+			secure: __isprod__,
 		},
 	}),
 );

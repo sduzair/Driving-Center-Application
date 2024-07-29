@@ -35,76 +35,109 @@
                 <div class="col-md-9 col-lg-7 col-xl-6 offset-xl-1">
                   <!-- Signup form -->
                   <form
-                    class="row g-3"
-                    action="/users/signup#input-username"
+                    class="row g-3 needs-validation <%- inputFieldErrors ? 'was-validated' : '' %>"
+                    action="/users/signup#loginForm"
+                    id="loginForm"
                     method="POST"
+                    novalidate
                   >
                     <!-- Username input -->
                     <div class="form-outline mb-4">
+                      <label
+                        class="form-label"
+                        for="input-username"
+                        >Username</label
+                      >
                       <input
                         type="text"
                         id="input-username"
                         class="form-control form-control-lg"
                         placeholder="Enter a username"
                         name="username"
-                        value="<%- data ? data.username : '' %>"
+                        required
+                        value="<%= data && !inputFieldErrors?.username ? data.username : '' %>"
                       />
-                      <label
-                        class="form-label"
-                        for="input-username"
-                        >Username</label
-                      >
+                      <div class="invalid-feedback"><%- inputFieldErrors?.username || 'This field cannot be empty' %></div>
                     </div>
 
                     <!-- Password input -->
                     <div class="form-outline mb-3">
-                      <input
-                        type="password"
-                        id="input-password"
-                        class="form-control form-control-lg"
-                        placeholder="Enter password"
-                        name="password"
-                        value="<%- data ? data.password : '' %>"
-                      />
                       <label
                         class="form-label"
                         for="input-password"
                         >Password</label
                       >
+                      <div class="input-group">
+                        <input
+                          type="password"
+                          id="input-password"
+                          class="form-control form-control-lg"
+                          placeholder="Enter password"
+                          name="password"
+                          required
+                          aria-describedby="passwordHelpBlock"
+                        />
+                        <span class="input-group-text togglePassword">
+                          <i class="far fa-eye-slash"></i>
+                        </span>
+                        <div class="invalid-feedback"><%= inputFieldErrors?.password || 'This field cannot be empty' %></div>
+                      </div>
+                      <div
+                        id="passwordHelpBlock"
+                        class="form-text"
+                      >
+                        Your password must be 8-20 characters long, contain letters and numbers, and must contain at least one special character.
+                      </div>
                     </div>
 
                     <!-- Repeat Password input -->
                     <div class="form-outline mb-3">
-                      <input
-                        type="password"
-                        id="input-password-repeat"
-                        class="form-control form-control-lg"
-                        placeholder="Repeat password"
-                        name="passwordRepeat"
-                        value="<%- data ? data.password : '' %>"
-                      />
                       <label
                         class="form-label"
                         for="input-password-repeat"
                         >Re-enter Password</label
                       >
+                      <div class="input-group">
+                        <input
+                          type="password"
+                          id="input-password-repeat"
+                          class="form-control form-control-lg"
+                          placeholder="Repeat password"
+                          name="passwordRepeat"
+                          required
+                        />
+                        <span class="input-group-text togglePassword">
+                          <i class="far fa-eye-slash"></i>
+                        </span>
+                        <div class="invalid-feedback"><%= inputFieldErrors?.passwordRepeat || 'This field cannot be empty' %></div>
+                      </div>
                     </div>
 
                     <!-- userType -->
                     <div class="form-outline mb-3">
-                      <select
-                        id="selectUserType"
-                        class="form-select form-select-lg mb-3"
-                        aria-label="User type select"
-                        name="userType"
-                      >
-                        <option value="Driver" <% if (data) if ( data.userType === 'Driver' ) { %> selected <% } %>/>Driver <option value="Examiner" <% if (data) if ( data.userType === 'Examiner' ) { %> selected <% } %>/>Examiner <option value="Admin" <% if (data) if ( data.userType === 'Admin' ) { %> selected <% } %>/>Admin
-                      </select>
                       <label
                         class="form-label"
                         for="selectUserType"
                         >Select User Type</label
                       >
+                      <select
+                        id="selectUserType"
+                        class="form-select form-select-lg mb-3"
+                        aria-label="User type select"
+                        name="userType"
+                        required
+                      >
+                        <option
+                          selected
+                          disabled
+                          value=""
+                        >
+                          Choose...
+                        </option>
+                        <option value="Driver" <% if(data && data.userType === 'Driver') { %> selected <% } %>>Driver<option value="Examiner" <% if(data && data.userType === 'Examiner') { %> selected <% } %>>Examiner <option value="Admin" <% if(data && data.userType === 'Admin') { %> selected <% } %>>Admin
+                      </select>
+
+                      <div class="invalid-feedback"><%- inputFieldErrors?.passwordRepeat || 'This field cannot be empty' %></div>
                     </div>
 
                     <div class="text-center text-lg-start mt-4 pt-2">
@@ -112,7 +145,6 @@
                         type="submit"
                         class="btn btn-primary btn-lg"
                         style="padding-left: 2.5rem; padding-right: 2.5rem"
-                        data-aos="flip-up"
                       >
                         Signup
                       </button>
@@ -135,12 +167,42 @@
           onclick="this.parentElement.style.display='none';"
           >&times;</span
         >
+        <span
+          class="closebtn"
+          onclick="this.parentElement.style.display='none';"
+          >&times;</span
+        >
         <strong>Server:</strong>
         <%= errors[i] %>
       </div>
       <% } %>
       <% } %>
     </div>
+    <script src="/js/validate-forms.js"></script>
+    <script src="/js/password-visibility.js"></script>
+    <script>
+      const form = document.getElementById("loginForm");
+      form.addEventListener(
+        "submit",
+        (event) => {
+          const password = document.getElementById("input-password").value;
+          const passwordRepeatInput = document.getElementById("input-password-repeat");
+          const passwordRepeat = passwordRepeatInput.value;
+          const feedbackDiv = passwordRepeatInput.closest(".input-group").querySelector(".invalid-feedback");
+
+          if (password !== passwordRepeat) {
+            event.preventDefault();
+            event.stopPropagation();
+            feedbackDiv.textContent = "Passwords do not match";
+            passwordRepeatInput.classList.add("is-invalid");
+            form.classList.remove("was-validated");
+          } else {
+            passwordRepeatInput.classList.remove("is-invalid");
+          }
+        },
+        false
+      );
+    </script>
     <%- include ('layouts/footer.ejs'); -%>
     <%- include ('layouts/scripts.ejs'); -%>
   </body>
