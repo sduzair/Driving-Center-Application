@@ -36,7 +36,7 @@
         <div
           class="col-sm-12 col-md-12 col-lg-5 col-xl-5"
           data-aos="fade-in"
-          data-aos-delay="<%- (i % 2 == 0) ? '0' : '100' %>"
+          data-aos-delay="<%= (i % 2 == 0) ? '0' : '100' %>"
         >
           <div class="card user-card-full">
             <div class="row m-l-0 m-r-0">
@@ -44,7 +44,7 @@
                 <div class="card-block text-center text-white">
                   <div>
                     <img
-                      src="/assets<%- driversObj[i].image1 %>"
+                      src="/assets<%= driversObj[i].image1 %>"
                       class="img-radius"
                       alt="User-Profile-Image"
                       onerror="this.onerror=null;this.src='/assets/icons/user.png'"
@@ -60,28 +60,28 @@
                         <p class="row">Name:</p>
                         <p class="row mx-1 small-font">
                           <mark
-                            ><%- driversObj[i].firstName %>
-                            <%- driversObj[i].lastName %>
+                            ><%= driversObj[i].firstName %>
+                            <%= driversObj[i].lastName %>
                           </mark>
                         </p>
                       </div>
                       <div class="col">
                         <p class="row">Test:</p>
                         <p class="row mx-1 small-font">
-                          <mark><%- driversObj[i].appointmentType %></mark>
+                          <mark><%= driversObj[i].appointmentType %></mark>
                         </p>
                       </div>
                       <div class="col">
                         <p class="row">Licence no:</p>
                         <p class="row mx-1 small-font">
-                          <mark><%- driversObj[i].carLicenceNumber %></mark>
+                          <mark><%= driversObj[i].carLicenceNumber %></mark>
                         </p>
                       </div>
                       <div class="col">
                         <p class="row">Result:</p>
                         <p class="row mx-1 small-font">
                           <mark class="<%= driversObj[i].testResult ? 'bg-success' : 'bg-danger color-white' %> bg-gradient"
-                            ><%- driversObj[i].testResult ? 'Pass' :
+                            ><%= driversObj[i].testResult ? 'Pass' :
                           'Fail'%></mark
                           >
                         </p>

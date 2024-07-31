@@ -110,7 +110,7 @@
         <div
           class="col-10 col-sm-8 col-md-8 col-lg-6 col-xl-5"
           data-aos="fade-in"
-          data-aos-delay="<%- (i % 2 == 0) ? '0' : '100' %>"
+          data-aos-delay="<%= (i % 2 == 0) ? '0' : '100' %>"
         >
           <div class="card user-card-full">
             <div class="row m-l-0 m-r-0">
@@ -133,39 +133,39 @@
                         <p class="row">Name:</p>
                         <p class="row mx-1 small-font">
                           <mark
-                            ><%- driversObj[i].firstName %>
-                            <%- driversObj[i].lastName %>
+                            ><%= driversObj[i].firstName %>
+                            <%= driversObj[i].lastName %>
                           </mark>
                         </p>
                       </div>
                       <div class="col">
                         <p class="row">Test:</p>
                         <p class="row mx-1 small-font">
-                          <mark><%- driversObj[i].appointmentType %></mark>
+                          <mark><%= driversObj[i].appointmentType %></mark>
                         </p>
                       </div>
                       <div class="col">
                         <p class="row">Time:</p>
                         <p class="row mx-1 small-font">
-                          <mark><%- driversObj[i].appointmentID.appointmentTime %></mark>
+                          <mark><%= driversObj[i].appointmentID.appointmentTime %></mark>
                         </p>
                       </div>
                       <div class="col">
                         <p class="row">Date:</p>
                         <p class="row mx-1 small-font">
-                          <mark><%- driversObj[i].appointmentID.appointmentDate %></mark>
+                          <mark><%= driversObj[i].appointmentID.appointmentDate %></mark>
                         </p>
                       </div>
                       <div class="col">
                         <p class="row">Car Make:</p>
                         <p class="row mx-1 small-font">
-                          <mark><%- driversObj[i].carMake %></mark>
+                          <mark><%= driversObj[i].carMake %></mark>
                         </p>
                       </div>
                       <div class="col">
                         <p class="row">Plate Number:</p>
                         <p class="row mx-1 small-font">
-                          <mark><%- driversObj[i].carPlatNumber %></mark>
+                          <mark><%= driversObj[i].carPlatNumber %></mark>
                         </p>
                       </div>
                     </div>
@@ -177,8 +177,8 @@
                       class="btn btn-primary"
                       data-bs-toggle="modal"
                       data-bs-target="#gradeModel"
-                      driverID="<%- driversObj[i]._id %>"
-                      driverName="<%- driversObj[i].firstName %> <%- driversObj[i].lastName %>"
+                      driverID="<%= driversObj[i]._id %>"
+                      driverName="<%= driversObj[i].firstName %> <%= driversObj[i].lastName %>"
                     >
                       Grade
                     </button>

@@ -4,7 +4,7 @@
   data-aos="zoom-out-up"
 >
   <div>
-    <span class="time <%= testResult.testResult ? 'bg-success border-success' : 'bg-danger border-danger color-white' %>"><%- testResult.testResult ? 'Pass' : 'Fail'%></span>
+    <span class="time <%= testResult.testResult ? 'bg-success border-success' : 'bg-danger border-danger color-white' %>"><%= testResult.testResult ? 'Pass' : 'Fail'%></span>
   </div>
 </div>
 <div class="mx-auto mt-4">

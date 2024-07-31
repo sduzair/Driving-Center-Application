@@ -35,7 +35,7 @@
                 <div class="col-md-9 col-lg-7 col-xl-6 offset-xl-1">
                   <!-- Signup form -->
                   <form
-                    class="row g-3 needs-validation <%- inputFieldErrors ? 'was-validated' : '' %>"
+                    class="row g-3 needs-validation <%= inputFieldErrors ? 'was-validated' : '' %>"
                     action="/users/signup#loginForm"
                     id="loginForm"
                     method="POST"
@@ -57,7 +57,7 @@
                         required
                         value="<%= data && !inputFieldErrors?.username ? data.username : '' %>"
                       />
-                      <div class="invalid-feedback"><%- inputFieldErrors?.username || 'This field cannot be empty' %></div>
+                      <div class="invalid-feedback"><%= inputFieldErrors?.username || 'This field cannot be empty' %></div>
                     </div>
 
                     <!-- Password input -->
@@ -137,7 +137,7 @@
                         <option value="Driver" <% if(data && data.userType === 'Driver') { %> selected <% } %>>Driver<option value="Examiner" <% if(data && data.userType === 'Examiner') { %> selected <% } %>>Examiner <option value="Admin" <% if(data && data.userType === 'Admin') { %> selected <% } %>>Admin
                       </select>
 
-                      <div class="invalid-feedback"><%- inputFieldErrors?.passwordRepeat || 'This field cannot be empty' %></div>
+                      <div class="invalid-feedback"><%= inputFieldErrors?.passwordRepeat || 'This field cannot be empty' %></div>
                     </div>
 
                     <div class="text-center text-lg-start mt-4 pt-2">
