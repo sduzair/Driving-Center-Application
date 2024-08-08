@@ -1,11 +1,12 @@
 # Driving-Test-Center-Application-Project
 
+![publish docker image workflow status](https://github.com/sduzair/Driving-Test-Center-Application-Project/actions/workflows/publish-docker-image.yml/badge.svg)
+
+![ci workflow status](https://github.com/sduzair/Driving-Test-Center-Application-Project/actions/workflows/ci.yml/badge.svg?branch=main)
+
 - [Driving-Test-Center-Application-Project](#driving-test-center-application-project)
   - [Development](#development)
-    - [Environment Variables](#environment-variables)
-    - [Dev Environment](#dev-environment)
-      - [Formatting and Linting](#formatting-and-linting)
-      - [Database](#database)
+    - [Formatting and Linting](#formatting-and-linting)
     - [With Docker](#with-docker)
   - [Requirements](#requirements)
     - [Mainly entire application consists of following parts](#mainly-entire-application-consists-of-following-parts)
@@ -19,20 +20,6 @@
 
 ## Development
 
-### Environment Variables
-
-- Copy the [.env.template](.env.template) file to `.env`:
-
-```sh
-cp .env.template .env
-```
-
-- Fill in the required values in the .env file.
-
-\*Note that this node application uses a uri to connect to a mongodb instance
-
-### Dev Environment
-
 - Clone the repo
 - Verify node version see [.nvmrc](.nvmrc)
 - Install dependencies
@@ -41,21 +28,34 @@ cp .env.template .env
 npm install
 ```
 
+- Create a `.env` file in the root directory. The only required environment variable for the development environment is _SESS_SECRET_:
+
+```env
+SESS_SECRET=your_strong_session_secret
+```
+
+- (Optional) For other environment variables, refer to the [Docker Compose](./docker-compose.yml) file for their defaults and options.
+
+> [!NOTE]
+> This application connects to a MongoDB instance. You can provide a full connection string using _MONGODB_URI_, which will override other MongoDB-related variables.
+
+- Run a MongoDB container
+
+```sh
+docker run --name mongodb -p 27017:27017 -d mongo:latest
+```
+
 - Run the app (uses `nodemon`)
 
 ```sh
 npm run dev:start
 ```
 
-#### Formatting and Linting
+### Formatting and Linting
 
 - This project uses `biome` for linting and formatting files
 - All files except js and json files are formatted using prettier
 - `Husky` is used as a dev dependency for pre-commit hooks that format and lint staged files see [.husky\pre-commit](.husky\pre-commit)
-
-#### Database
-
-The application uses a MongoDB database (M0 Sandbox tier) deployed on Azure in Toronto (Canada Central).
 
 ### With Docker
 

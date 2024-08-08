@@ -15,10 +15,14 @@ require("dotenv").config();
 module.exports = {
 	PORT = 3000,
 	NODE_ENV = "development",
-	CLUSTER_URL,
-	DB_NAME,
-	DB_USERNAME,
-	DB_PASSWORD,
+
+	MONGODB_PROTOCOL = "mongodb",
+	MONGODB_HOST = "127.0.0.1",
+	MONGODB_PORT = 27017,
+	MONGODB_DATABASE = "abc_driving_center",
+	MONGODB_USERNAME,
+	MONGODB_PASSWORD,
+	MONGODB_URI,
 
 	SESS_NAME = "sid",
 	SESS_SECRET,
@@ -68,13 +72,43 @@ app.use("*", (req, _res, next) => {
 });
 
 //mongodb database
+// Function to construct MongoDB URI
+/**
+ * @description Standard mongodb uri format mongodb://[username:password@]host1[:port1][,host2[:port2],...[,hostN[:portN]]][/[database][?options]].
+ * Format when using DNS SRV mongodb+srv://[username:password@]host[/[database][?options]]
+ */
+function constructMongoDBURI() {
+	if (MONGODB_URI) {
+		return MONGODB_URI; // Use the full URI if provided
+	}
+
+	let uri = `${MONGODB_PROTOCOL}://`;
+
+	// Add authentication if username and password are provided
+	if (MONGODB_USERNAME && MONGODB_PASSWORD) {
+		uri += `${encodeURIComponent(MONGODB_USERNAME)}:${encodeURIComponent(MONGODB_PASSWORD)}@`;
+	}
+
+	// Add host
+	uri += MONGODB_HOST;
+
+	// Add port if not using SRV and port is specified
+	if (MONGODB_PROTOCOL !== "mongodb+srv" && MONGODB_PORT) {
+		uri += `:${MONGODB_PORT}`;
+	}
+
+	// Add database name
+	if (MONGODB_DATABASE) {
+		uri += `/${MONGODB_DATABASE}`;
+	}
+
+	return uri;
+}
 // todo postfix to uri ?retryWrites=true&w=majority
-mongoose.connect(
-	`mongodb+srv://${DB_USERNAME}:${DB_PASSWORD}@${CLUSTER_URL}/${DB_NAME}`,
-	{
-		useNewUrlParser: true,
-	},
-);
+mongoose.set("strictQuery", false);
+mongoose.connect(constructMongoDBURI(), {
+	useNewUrlParser: true,
+});
 
 // routing
 // driver authentication prevents any user other than 'Driver' from access

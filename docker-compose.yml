@@ -1,12 +1,41 @@
 services:
-  drivingtestcenterapplicationproject:
-    image: drivingtestcenterapplicationproject
+  drivingtestcenterapp:
+    image: drivingtestcenterapp
     build:
       context: .
       dockerfile: ./Dockerfile
-    env_file:
-      - .env
     environment:
       PORT: ${PORT:-3000}
+      NODE_ENV: ${NODE_ENV:-development}
+      MONGODB_PROTOCOL: ${MONGODB_PROTOCOL:-mongodb} # Connection protocol ("mongodb" or "mongodb+srv")
+      MONGODB_HOST: mongodb
+      MONGODB_PORT: ${MONGODB_PORT:-27017} #  (not used with DNS SRV)
+      MONGODB_DATABASE: ${MONGODB_DATABASE:-abc_driving_center}
+      MONGODB_USERNAME: ${MONGODB_USERNAME} # (optional in dev)
+      MONGODB_PASSWORD: ${MONGODB_PASSWORD} # (optional in dev)
+      MONGODB_URI: ${MONGODB_URI} # (optional) Full MongoDB uri  (note: if this is given other mongodb env variables are ignored)
+      SESS_NAME: ${SESS_NAME:-sid}
+      SESS_SECRET: ${SESS_SECRET} # (required)
+      SESS_LIFETIME: ${SESS_LIFETIME:-31536000000}
+      BCRYPT_SALT_ROUNDS: ${BCRYPT_SALT_ROUNDS:-10}
     ports:
       - ${PORT:-3000}:${PORT:-3000}
+    networks:
+      - app_network
+    depends_on:
+      - mongodb
+
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+    volumes:
+      - mongo_data:/data/db
+    networks:
+      - app_network
+
+networks:
+  app_network:
+    driver: bridge
+
+volumes:
+  mongo_data:

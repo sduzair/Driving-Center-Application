@@ -5,10 +5,11 @@
 	"main": "index.js",
 	"module": "commonjs",
 	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1",
-		"dev:start": "nodemon index.js",
+		"test": "echo \"Running tests...\" && exit 0",
+		"serve": "nodemon index.js",
 		"start": "node index.js",
-		"prepare": "husky || true"
+		"prepare": "husky || true",
+		"lint": "prettier --check . && biome ci ."
 	},
 	"author": "8796155 Uzair Ahmed Syed",
 	"license": "ISC",

@@ -1,0 +1,36 @@
+on:
+  push:
+    branches:
+      - main
+      - feature/*
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+  workflow_call:
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    concurrency: ci-${{ github.ref || github.event_name }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: ".nvmrc"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run formatting and linting checks
+        run: npm run lint
+
+      - name: Build Project
+        run: npm run build --if-present
+
+      - name: Run Tests
+        run: npm test

@@ -17,8 +17,5 @@
 	"files": {
 		"ignoreUnknown": true,
 		"ignore": ["**/node_modules/**", "**/*.css"]
-	},
-	"formatter": {
-		"lineEnding": "crlf"
 	}
 }
