@@ -6,7 +6,8 @@ const mongoose = require("mongoose");
 //for form multimedia data
 const fileUpload = require("express-fileupload");
 // for user session
-const expressSession = require("express-session");
+const session = require("express-session");
+const MemoryStore = require("memorystore")(session);
 const flash = require("connect-flash");
 // for development environment variables
 // ! comment this line for dev env variables before deployment
@@ -43,7 +44,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(fileUpload());
 app.use(
-	expressSession({
+	session({
 		name: SESS_NAME,
 		resave: false,
 		saveUninitialized: false,
@@ -53,6 +54,9 @@ app.use(
 			sameSite: true,
 			secure: __isprod__,
 		},
+		store: new MemoryStore({
+			checkPeriod: Number.parseInt(SESS_LIFETIME),
+		}),
 	}),
 );
 app.use(flash());
