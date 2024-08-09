@@ -9,6 +9,8 @@ const fileUpload = require("express-fileupload");
 const session = require("express-session");
 const MemoryStore = require("memorystore")(session);
 const flash = require("connect-flash");
+const pino = require("pino");
+const pinoHttp = require("pino-http");
 // for development environment variables
 // ! comment this line for dev env variables before deployment
 require("dotenv").config();
@@ -27,7 +29,7 @@ module.exports = {
 
 	SESS_NAME = "sid",
 	SESS_SECRET,
-	SESS_LIFETIME = 1000 * 60 * 60 * 24 * 365, // 365 days
+	SESS_LIFETIME = 1000 * 60 * 60 * 24 * 7, // 7 days
 	BCRYPT_SALT_ROUNDS = 10,
 } = process.env;
 
@@ -36,6 +38,9 @@ const __isprod__ = NODE_ENV === "production";
 //middleware for validation
 //importing controllers
 const driverFetch = require("./controllers/driverFetch");
+// Create a Pino logger instance
+const logger = pino();
+const httpLogger = pinoHttp({ logger });
 const app = express();
 app.set("view engine", "ejs");
 app.use(express.static("public"));
@@ -60,6 +65,7 @@ app.use(
 	}),
 );
 app.use(flash());
+app.use(httpLogger);
 
 app.use("/users/signup", require("./middleware/validateSignup"));
 app.use("/users/login", require("./middleware/validateLogin"));
@@ -109,6 +115,10 @@ function constructMongoDBURI() {
 	return uri;
 }
 // todo postfix to uri ?retryWrites=true&w=majority
+mongoose.set("debug", (collectionName, methodName, ...methodArgs) => {
+	logger.info(`${collectionName}.${methodName}(${methodArgs.join(", ")})`);
+});
+
 mongoose.set("strictQuery", false);
 mongoose.connect(constructMongoDBURI(), {
 	useNewUrlParser: true,
@@ -246,7 +256,7 @@ app.post(
 app.use((_req, res) => res.render("notfound"));
 
 app.listen(Number.parseInt(PORT), () => {
-	console.log(`Listening on port: ${PORT}`);
+	logger.info(`Listening on port: ${PORT}`);
 	if (NODE_ENV === "development")
-		console.log(`Server running on localhost:${PORT}`);
+		logger.info(`Server running on localhost:${PORT}`);
 });

@@ -6,7 +6,7 @@
 	"module": "commonjs",
 	"scripts": {
 		"test": "echo \"Running tests...\" && exit 0",
-		"serve": "nodemon index.js",
+		"serve": "nodemon index.js | pino-pretty",
 		"start": "node index.js",
 		"prepare": "husky || true",
 		"lint": "prettier --check . && biome ci ."
@@ -26,12 +26,15 @@
 		"express-session": "^1.17.2",
 		"memorystore": "^1.6.7",
 		"mongoose": "^6.2.1",
-		"mongoose-unique-validator": "^3.0.0"
+		"mongoose-unique-validator": "^3.0.0",
+		"pino": "^9.3.2",
+		"pino-http": "^10.2.0"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "1.8.3",
 		"husky": "^9.1.1",
 		"nodemon": "^2.0.15",
+		"pino-pretty": "^11.2.2",
 		"prettier": "^2.8.8",
 		"prettier-plugin-ejs": "^1.0.3"
 	}

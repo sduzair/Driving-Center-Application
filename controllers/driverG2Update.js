@@ -19,7 +19,6 @@ module.exports = async function updateDriverDetails(req, res) {
 	})
 		.populate("userID")
 		.exec((err, driverObj) => {
-			console.log(driverObj);
 			if (err) {
 				req.flash(
 					"validationErrors",
