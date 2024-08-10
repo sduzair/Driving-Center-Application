@@ -120,24 +120,25 @@
                         for="selectUserType"
                         >Select User Type</label
                       >
-                      <select
-                        id="selectUserType"
-                        class="form-select form-select-lg mb-3"
-                        aria-label="User type select"
-                        name="userType"
-                        required
-                      >
-                        <option
-                          selected
-                          disabled
-                          value=""
+                      <div class="input-group">
+                        <select
+                          id="selectUserType"
+                          class="form-select form-select-lg"
+                          aria-label="User type select"
+                          name="userType"
+                          required
                         >
-                          Choose...
-                        </option>
-                        <option value="Driver" <% if(data && data.userType === 'Driver') { %> selected <% } %>>Driver<option value="Examiner" <% if(data && data.userType === 'Examiner') { %> selected <% } %>>Examiner <option value="Admin" <% if(data && data.userType === 'Admin') { %> selected <% } %>>Admin
-                      </select>
-
-                      <div class="invalid-feedback"><%= inputFieldErrors?.passwordRepeat || 'This field cannot be empty' %></div>
+                          <option
+                            selected
+                            disabled
+                            value=""
+                          >
+                            Choose...
+                          </option>
+                          <option value="Driver" <% if(data && data.userType === 'Driver') { %> selected <% } %>>Driver<option value="Examiner" <% if(data && data.userType === 'Examiner') { %> selected <% } %>>Examiner <option value="Admin" <% if(data && data.userType === 'Admin') { %> selected <% } %>>Admin
+                        </select>
+                        <div class="invalid-feedback"><%= inputFieldErrors?.userType || 'This field cannot be empty' %></div>
+                      </div>
                     </div>
 
                     <div class="text-center text-lg-start mt-4 pt-2">

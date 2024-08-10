@@ -113,5 +113,12 @@ module.exports = async function userSignup(req, res) {
 				res.redirect("/login");
 			});
 			break;
+		default:
+			req.flash("data", req.body);
+			req.flash("inputFieldErrors", {
+				userType: "Invalid user type",
+			});
+			res.redirect("/signup");
+			return;
 	}
 };
