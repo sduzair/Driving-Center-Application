@@ -1,16 +1,6 @@
-const USER_TYPES = {
-	DRIVER: "Driver",
-	EXAMINER: "Examiner",
-	ADMIN: "Admin",
-};
-
 const isValueProvided = (value) => value && value.trim() !== "";
 const isValidPassword = (password) =>
 	checkPasswordStrength(password) !== "Weak";
-const isValidUserType = (userType) =>
-	userType &&
-	userType.trim() !== "" &&
-	Object.values(USER_TYPES).includes(userType);
 const isPasswordMatch = (password, passwordRepeat) =>
 	password === passwordRepeat;
 
@@ -24,15 +14,13 @@ module.exports = (req, res, next) => {
 		!isValueProvided(passwordRepeat) ||
 		!isValueProvided(userType) ||
 		!isPasswordMatch(password, passwordRepeat) ||
-		!isValidPassword(password) ||
-		!isValidUserType(userType)
+		!isValidPassword(password)
 	) {
 		return res.render("signup", {
 			serverMsgs: null,
 			errors: ["Please ensure that all required fields have valid values"],
 			data: {
 				username: isValueProvided(username) ? username : "",
-				userType: isValueProvided(userType) ? userType : "",
 			},
 			inputFieldErrors: {
 				username: !isValueProvided(username) ? "Please enter a username" : null,
@@ -45,11 +33,6 @@ module.exports = (req, res, next) => {
 					? "Please reenter your password"
 					: !isPasswordMatch(password, passwordRepeat)
 						? "The passwords do not match"
-						: null,
-				userType: !isValueProvided(userType)
-					? "Please enter a user type"
-					: !isValidUserType(userType)
-						? `Invalid user type. Please select one of: ${Object.values(USER_TYPES).join(", ")}`
 						: null,
 			},
 		});

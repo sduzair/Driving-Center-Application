@@ -137,7 +137,6 @@
                           </option>
                           <option value="Driver" <% if(data && data.userType === 'Driver') { %> selected <% } %>>Driver<option value="Examiner" <% if(data && data.userType === 'Examiner') { %> selected <% } %>>Examiner <option value="Admin" <% if(data && data.userType === 'Admin') { %> selected <% } %>>Admin
                         </select>
-                        <div class="invalid-feedback"><%= inputFieldErrors?.userType || 'This field cannot be empty' %></div>
                       </div>
                     </div>
 

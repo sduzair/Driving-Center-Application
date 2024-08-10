@@ -286,6 +286,12 @@ app.post(
 
 app.use((_req, res) => res.render("notfound"));
 
+// Error-handling middleware
+app.use((err, req, res, next) => {
+	logger.error(err); // Log the error with stack trace
+	res.status(err.status || 500).send(err.message || "Internal Server Error");
+});
+
 app.listen(Number.parseInt(PORT), () => {
 	logger.info(`Listening on port: ${PORT}`);
 	if (NODE_ENV === "development")

@@ -1,7 +1,7 @@
 const User = require("../models/User");
 const Driver = require("../models/Driver");
 
-module.exports = async function userSignup(req, res) {
+module.exports = async function userSignup(req, res, next) {
 	const userObj = {};
 	userObj.username = req.body.username;
 	userObj.password = req.body.password;
@@ -113,12 +113,10 @@ module.exports = async function userSignup(req, res) {
 				res.redirect("/login");
 			});
 			break;
-		default:
-			req.flash("data", req.body);
-			req.flash("inputFieldErrors", {
-				userType: "Invalid user type",
-			});
-			res.redirect("/signup");
-			return;
+		default: {
+			const error = new Error("Invalid user type");
+			error.status = 400;
+			return next(error); // Pass error to error handling middleware
+		}
 	}
 };

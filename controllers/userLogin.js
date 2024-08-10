@@ -49,6 +49,12 @@ module.exports = function userLogin(req, res) {
 					req.flash("serverMsgs", ["Welcome to the admin dashboard"]);
 					res.redirect("/admins/dashboard-page");
 					break;
+				default: {
+					const error = new Error(
+						"The server encountered an unexpected condition due to corrupted role definitions. Expected roles are Driver, Examiner, or Admin.",
+					);
+					return next(error);
+				}
 			}
 		});
 	});
