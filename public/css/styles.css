@@ -12073,16 +12073,16 @@ blockquote {
 }
 
 #mainNav .navbar-toggler {
-  font-size: 0.9rem;
-  font-weight: 600;
-  padding: 0.75rem;
+  /* font-size: 1em; */
+  /* font-weight: 600; */
+  /* padding: 0.75rem; */
   text-transform: uppercase;
 }
 
 #mainNav .navbar-nav > li.nav-item > a.nav-link {
-  font-size: 0.9rem;
-  font-weight: 500;
-  letter-spacing: 0.0625em;
+  font-size: 0.9em;
+  /* font-weight: 500; */
+  /* letter-spacing: 0.0625em; */
   text-transform: uppercase;
 }
 
@@ -12382,7 +12382,8 @@ button.btn.btn-primary {
 
 /* nav highlight active */
 .active {
-  box-shadow: rgb(0 0 0 / 35%) 0px 5px 15px;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
 }
 
 .masthead-pagenotfound {
