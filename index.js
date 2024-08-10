@@ -15,7 +15,7 @@ const pinoHttp = require("pino-http");
 // ! comment this line for dev env variables before deployment
 require("dotenv").config();
 
-module.exports = {
+const {
 	PORT = 3000,
 	NODE_ENV = "development",
 
@@ -32,16 +32,55 @@ module.exports = {
 	SESS_LIFETIME = 1000 * 60 * 60 * 24 * 7, // 7 days
 	BCRYPT_SALT_ROUNDS = 10,
 } = process.env;
-
 const __isprod__ = NODE_ENV === "production";
+
+// Create a Pino logger instance
+const logger = pino();
+const httpLogger = __isprod__
+	? pinoHttp({ logger })
+	: pinoHttp({
+			logger,
+			serializers: {
+				req: (req) => {
+					return {
+						method: req.method,
+						url: req.url,
+						headers: req.headers,
+						body: req.body, // Serialize the entire request body
+					};
+				},
+				res: (res) => {
+					return {
+						statusCode: res.statusCode,
+						headers: res.getHeaders(),
+						body: res.body, // Serialize the entire response body
+					};
+				},
+			},
+			wrapSerializers: false, // Use raw values directly
+		});
+const app = express();
+
+module.exports = {
+	PORT,
+	NODE_ENV,
+	MONGODB_PROTOCOL,
+	MONGODB_HOST,
+	MONGODB_PORT,
+	MONGODB_DATABASE,
+	MONGODB_USERNAME,
+	MONGODB_PASSWORD,
+	MONGODB_URI,
+	SESS_NAME,
+	SESS_SECRET,
+	SESS_LIFETIME, // 7 days
+	BCRYPT_SALT_ROUNDS,
+	logger,
+};
 
 //middleware for validation
 //importing controllers
 const driverFetch = require("./controllers/driverFetch");
-// Create a Pino logger instance
-const logger = pino();
-const httpLogger = pinoHttp({ logger });
-const app = express();
 app.set("view engine", "ejs");
 app.use(express.static("public"));
 //for form data from POST request
