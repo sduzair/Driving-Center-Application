@@ -101,6 +101,7 @@ app.use(
 		store: new MemoryStore({
 			checkPeriod: Number.parseInt(SESS_LIFETIME),
 		}),
+		proxy: true,
 	}),
 );
 app.use(flash());
