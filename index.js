@@ -1,20 +1,15 @@
 const express = require("express");
-const path = require("node:path");
-const ejs = require("ejs");
-//for database
 const mongoose = require("mongoose");
-//for form multimedia data
 const fileUpload = require("express-fileupload");
-// for user session
 const session = require("express-session");
 const MemoryStore = require("memorystore")(session);
 const flash = require("connect-flash");
 const pino = require("pino");
 const pinoHttp = require("pino-http");
-// for development environment variables
-// ! comment this line for dev env variables before deployment
 require("dotenv").config();
 
+// Env variables
+const SEVEN_DAYS = 1000 * 60 * 60 * 24 * 7;
 const {
 	PORT = 3000,
 	NODE_ENV = "development",
@@ -29,12 +24,13 @@ const {
 
 	SESS_NAME = "sid",
 	SESS_SECRET,
-	SESS_LIFETIME = 1000 * 60 * 60 * 24 * 7, // 7 days
+	SESS_LIFETIME = SEVEN_DAYS,
 	BCRYPT_SALT_ROUNDS = 10,
 } = process.env;
+
 const __isprod__ = NODE_ENV === "production";
 
-// Create a Pino logger instance
+// Configure Pino structured logging
 const logger = pino();
 const httpLogger = __isprod__
 	? pinoHttp({ logger })
@@ -59,7 +55,6 @@ const httpLogger = __isprod__
 			},
 			wrapSerializers: false, // Use raw values directly
 		});
-const app = express();
 
 module.exports = {
 	PORT,
@@ -78,94 +73,90 @@ module.exports = {
 	logger,
 };
 
-//middleware for validation
-//importing controllers
-const driverFetch = require("./controllers/driverFetch");
-app.set("view engine", "ejs");
-app.use(express.static("public"));
-//for form data from POST request
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-app.use(fileUpload());
-app.use(
-	session({
-		name: SESS_NAME,
-		resave: false,
-		saveUninitialized: false,
-		secret: SESS_SECRET,
-		cookie: {
-			maxAge: Number.parseInt(SESS_LIFETIME),
-			sameSite: true,
-			secure: __isprod__,
-		},
-		store: new MemoryStore({
-			checkPeriod: Number.parseInt(SESS_LIFETIME),
-		}),
-		proxy: true,
-	}),
-);
-app.use(flash());
-app.use(httpLogger);
+// Create express app
+const app = express();
 
-app.use("/users/signup", require("./middleware/validateSignup"));
-app.use("/users/login", require("./middleware/validateLogin"));
-// todo: add auth middleware
-app.use(
-	"/drivers/bookAppointment",
-	require("./middleware/driverAdminAuthentication"),
-);
-
+// Middleware setup
 global.loggedIn = null;
-app.use("*", (req, _res, next) => {
-	loggedIn = req.session.userType;
-	next();
-});
+app
+	.set("view engine", "ejs")
+	.use(express.static("public"))
+	.use(express.json())
+	.use(express.urlencoded({ extended: true }))
+	.use(fileUpload())
+	.use(
+		session({
+			name: SESS_NAME,
+			resave: false,
+			saveUninitialized: false,
+			secret: SESS_SECRET,
+			cookie: {
+				maxAge: Number.parseInt(SESS_LIFETIME),
+				sameSite: true,
+				secure: __isprod__,
+			},
+			store: new MemoryStore({
+				checkPeriod: Number.parseInt(SESS_LIFETIME),
+			}),
+			proxy: true,
+		}),
+	)
+	.use(flash())
+	.use(httpLogger)
+	.use("/users/signup", require("./middleware/validateSignup"))
+	.use("/users/login", require("./middleware/validateLogin"))
+	.use(
+		"/drivers/bookAppointment",
+		require("./middleware/driverAdminAuthentication"),
+	)
+	.use("*", (req, _res, next) => {
+		loggedIn = req.session.userType;
+		next();
+	});
 
-//mongodb database
-// Function to construct MongoDB URI
-/**
- * @description Standard mongodb uri format mongodb://[username:password@]host1[:port1][,host2[:port2],...[,hostN[:portN]]][/[database][?options]].
- * Format when using DNS SRV mongodb+srv://[username:password@]host[/[database][?options]]
- */
-function constructMongoDBURI() {
-	if (MONGODB_URI) {
-		return MONGODB_URI; // Use the full URI if provided
-	}
+// Mongodb setup
+mongoose
+	.set("strictQuery", false)
+	.set("debug", (collectionName, methodName, ...methodArgs) => {
+		logger.info(`${collectionName}.${methodName}(${methodArgs.join(", ")})`);
+	})
+	.connect(
+		(() => {
+			// Function to construct MongoDB URI. Standard mongodb uri format:
+			// mongodb://[username:password@]host1[:port1][,host2[:port2],...[,hostN[:portN]]][/[database][?options]].
+			// Format when using DNS SRV:
+			// mongodb+srv://[username:password@]host[/[database][?options]]
+			if (MONGODB_URI) {
+				return MONGODB_URI; // Use the full URI if provided
+			}
 
-	let uri = `${MONGODB_PROTOCOL}://`;
+			let uri = `${MONGODB_PROTOCOL}://`;
 
-	// Add authentication if username and password are provided
-	if (MONGODB_USERNAME && MONGODB_PASSWORD) {
-		uri += `${encodeURIComponent(MONGODB_USERNAME)}:${encodeURIComponent(MONGODB_PASSWORD)}@`;
-	}
+			// Add authentication if username and password are provided
+			if (MONGODB_USERNAME && MONGODB_PASSWORD) {
+				uri += `${encodeURIComponent(MONGODB_USERNAME)}:${encodeURIComponent(MONGODB_PASSWORD)}@`;
+			}
 
-	// Add host
-	uri += MONGODB_HOST;
+			// Add host
+			uri += MONGODB_HOST;
 
-	// Add port if not using SRV and port is specified
-	if (MONGODB_PROTOCOL !== "mongodb+srv" && MONGODB_PORT) {
-		uri += `:${MONGODB_PORT}`;
-	}
+			// Add port if not using SRV and port is specified
+			if (MONGODB_PROTOCOL !== "mongodb+srv" && MONGODB_PORT) {
+				uri += `:${MONGODB_PORT}`;
+			}
 
-	// Add database name
-	if (MONGODB_DATABASE) {
-		uri += `/${MONGODB_DATABASE}`;
-	}
+			// Add database name
+			if (MONGODB_DATABASE) {
+				uri += `/${MONGODB_DATABASE}`;
+			}
 
-	return uri;
-}
-// todo postfix to uri ?retryWrites=true&w=majority
-mongoose.set("debug", (collectionName, methodName, ...methodArgs) => {
-	logger.info(`${collectionName}.${methodName}(${methodArgs.join(", ")})`);
-});
+			return uri;
+		})(),
+		{
+			useNewUrlParser: true,
+		},
+	);
 
-mongoose.set("strictQuery", false);
-mongoose.connect(constructMongoDBURI(), {
-	useNewUrlParser: true,
-});
-
-// routing
-// driver authentication prevents any user other than 'Driver' from access
 app.post(
 	"/drivers/updateG2Driver",
 	require("./middleware/driverAuthentication"),
