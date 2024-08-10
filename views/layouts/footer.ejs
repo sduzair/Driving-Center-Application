@@ -5,7 +5,7 @@
       <div class="col-md-10 col-lg-8 col-xl-7">
         <ul class="list-inline text-center">
           <li
-            class="list-inline-item"
+            class="list-inline-item manually-trigger-aos"
             data-aos="fade-in"
           >
             <a href="#!">
@@ -16,9 +16,9 @@
             </a>
           </li>
           <li
-            class="list-inline-item"
+            class="list-inline-item manually-trigger-aos"
             data-aos="fade-in"
-            data-aos-delay="50"
+            data-aos-delay="100"
           >
             <a href="#!">
               <span class="fa-stack fa-lg">
@@ -28,9 +28,9 @@
             </a>
           </li>
           <li
-            class="list-inline-item"
+            class="list-inline-item manually-trigger-aos"
             data-aos="fade-in"
-            data-aos-delay="100"
+            data-aos-delay="200"
           >
             <a href="#!">
               <span class="fa-stack fa-lg">
@@ -45,3 +45,25 @@
     </div>
   </div>
 </footer>
+<script>
+  // Select all elements with data-aos attribute within the footer
+  const elements = document.querySelectorAll(".manually-trigger-aos");
+
+  // Create the Intersection Observer
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        // Add class when the element enters the viewport
+        entry.target.classList.add("aos-animate");
+      } else {
+        // Remove class when the element exits the viewport
+        entry.target.classList.remove("aos-animate");
+      }
+    });
+  });
+
+  // Observe each element
+  elements.forEach((element) => {
+    observer.observe(element);
+  });
+</script>
