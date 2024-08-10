@@ -1,30 +1,16 @@
-<div class="custom-alerts">
-  <!-- Validation Errors -->
-  <% if( errors != null && errors.length > 0 ) { %>
-  <% for( var i = 0; i < errors.length; i++ ) { %>
-  <div class="custom-alert-red">
-    <span
-      class="closebtn"
-      onclick="this.parentElement.style.display='none';"
-      >&times;</span
-    >
-    <strong>Server:</strong>
-    <%= errors[i] %>
-  </div>
-  <% } %>
-  <% } %>
-  <!-- Server Messages -->
-  <% if( serverMsgs != null && serverMsgs.length > 0 ) { %>
-  <% for( var i = 0; i < serverMsgs.length; i++ ) { %>
-  <div class="custom-alert-yellow">
-    <span
-      class="closebtn"
-      onclick="this.parentElement.style.display='none';"
-      >&times;</span
-    >
-    <strong>Server:</strong>
-    <%= serverMsgs[i] %>
-  </div>
-  <% } %>
-  <% } %>
-</div>
+<!-- Validation Errors -->
+<% if( errors != null && errors.length > 0 ) { %>
+<% for( var i = 0; i < errors.length; i++ ) { %>
+<script>
+  toastr.error("<%= errors[i] %>");
+</script>
+<% } %>
+<% } %>
+<!-- Server Messages -->
+<% if( serverMsgs != null && serverMsgs.length > 0 ) { %>
+<% for( var i = 0; i < serverMsgs.length; i++ ) { %>
+<script>
+  toastr.success("<%= serverMsgs[i] %>");
+</script>
+<% } %>
+<% } %>

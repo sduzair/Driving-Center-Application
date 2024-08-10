@@ -1,0 +1,50 @@
+/* toast notifications #################################################################################### */
+
+.toast {
+  font-size: 1rem;
+}
+
+.icon::before {
+  display: inline-block;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+}
+
+#toast-container > .toast {
+  background-image: none !important;
+  font-size: calc(1rem + 0.1vw);
+  display: flex;
+  align-items: center;
+  /* font-size: 0.5rem; */
+}
+
+#toast-container > div {
+  opacity: unset;
+}
+
+#toast-container > .toast:before {
+  position: fixed;
+  font-family: var(--fa-style-family, "Font Awesome 6 Free");
+  font-weight: var(--fa-style, 900);
+  font-size: 2em;
+  float: left;
+  color: #fff;
+  padding-right: 0.5em;
+  margin: -0.4em -1.4em;
+}
+
+#toast-container > .toast-warning:before {
+  content: "\f071";
+}
+
+#toast-container > .toast-error:before {
+  content: "\f057";
+}
+
+#toast-container > .toast-info:before {
+  content: "\f05a";
+}
+
+#toast-container > .toast-success:before {
+  content: "\f164";
+}
