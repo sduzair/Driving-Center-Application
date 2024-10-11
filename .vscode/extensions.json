@@ -3,6 +3,7 @@
 		"esbenp.prettier-vscode",
 		"biomejs.biome",
 		"digitalbrainstem.javascript-ejs-support",
-		"pranaygp.vscode-css-peek"
+		"jacobcassidy.css-nesting-syntax-highlighting",
+		"ecmel.vscode-html-css"
 	]
 }
