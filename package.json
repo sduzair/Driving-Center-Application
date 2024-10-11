@@ -32,10 +32,12 @@
 	},
 	"devDependencies": {
 		"@biomejs/biome": "1.8.3",
+		"@types/node": "^22.7.5",
 		"husky": "^9.1.1",
 		"nodemon": "^2.0.15",
 		"pino-pretty": "^11.2.2",
 		"prettier": "^2.8.8",
 		"prettier-plugin-ejs": "^1.0.3"
-	}
+	},
+	"packageManager": "pnpm@9.8.0+sha512.8e4c3550fb500e808dbc30bb0ce4dd1eb614e30b1c55245f211591ec2cdf9c611cabd34e1364b42f564bd54b3945ed0f49d61d1bbf2ec9bd74b866fcdc723276"
 }
