@@ -4,3 +4,4 @@
 
 # vscode ide auto detects this as json and formats with biome extension which conflicts with prettier dep in cli
 .prettierrc
+pnpm-lock.yaml

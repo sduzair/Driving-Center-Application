@@ -9,7 +9,7 @@
 		"serve": "nodemon src/index.js | pino-pretty",
 		"start": "node src/index.js",
 		"prepare": "husky || true",
-		"lint": "prettier --check . && biome ci ."
+		"lint": "prettier --check . --ignore-unknown && biome ci . --files-ignore-unknown=true --no-errors-on-unmatched"
 	},
 	"author": "8796155 Uzair Ahmed Syed",
 	"license": "ISC",
