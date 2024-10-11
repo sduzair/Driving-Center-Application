@@ -6,8 +6,8 @@
 	"module": "commonjs",
 	"scripts": {
 		"test": "echo \"Running tests...\" && exit 0",
-		"serve": "nodemon index.js | pino-pretty",
-		"start": "node index.js",
+		"serve": "nodemon src/index.js | pino-pretty",
+		"start": "node src/index.js",
 		"prepare": "husky || true",
 		"lint": "prettier --check . && biome ci ."
 	},

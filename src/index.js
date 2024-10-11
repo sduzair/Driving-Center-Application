@@ -7,6 +7,7 @@ const flash = require("connect-flash");
 const pino = require("pino");
 const pinoHttp = require("pino-http");
 require("dotenv").config();
+const path = require("node:path");
 
 // Env variables
 const SEVEN_DAYS = 1000 * 60 * 60 * 24 * 7;
@@ -80,6 +81,7 @@ const app = express();
 global.loggedIn = null;
 app
 	.set("view engine", "ejs")
+	.set("views", path.join(__dirname, "views"))
 	.use(express.static("public"))
 	.use(express.json())
 	.use(express.urlencoded({ extended: true }))
