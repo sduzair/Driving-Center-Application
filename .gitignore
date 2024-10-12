@@ -121,3 +121,7 @@ dist
 
 # Stores VSCode versions used for testing VSCode extensions
 .vscode-test
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/

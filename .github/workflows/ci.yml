@@ -1,8 +1,5 @@
 on:
   push:
-    branches:
-      - main
-      - feature/*
   pull_request:
     branches:
       - main
@@ -13,24 +10,67 @@ jobs:
   ci:
     runs-on: ubuntu-latest
     concurrency: ci-${{ github.ref || github.event_name }}
+
+    services:
+      mongodb:
+        image: mongo:latest
+        ports:
+          - 27017:27017
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version-file: ".nvmrc"
-          cache: "npm"
+          cache: "pnpm"
 
-      - name: Install dependencies
-        run: npm install
+      - name: Get pnpm store directory
+        id: pnpm-cache
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
+
+      - name: Setup pnpm cache
+        id: cache
+        uses: actions/cache@v4
+        with:
+          path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+
+      - name: Install dependencies if cache miss
+        run: pnpm install --frozen-lockfile
 
       - name: Run formatting and linting checks
-        run: npm run lint
+        run: pnpm lint
 
-      - name: Build Project
-        run: npm run build --if-present
+      - name: Start server
+        run: pnpm start &
+        env:
+          SESS_SECRET: ${{ secrets.SESS_SECRET }}
 
-      - name: Run Tests
-        run: npm test
+      - name: Get Playwright version
+        id: playwright-version
+        run: echo "version=$(pnpm ls @playwright/test | grep @playwright | sed 's/.*@//')" >> $GITHUB_OUTPUT
+
+      - name: Cache Playwright browsers
+        uses: actions/cache@v4
+        id: playwright-cache
+        with:
+          path: ~/.cache/ms-playwright
+          key: ${{ runner.os }}-playwright-${{ steps.playwright-version.outputs.version }}
+
+      - name: Install browsers and Run e2e Tests
+        run: pnpm test
+
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 30

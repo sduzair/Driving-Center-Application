@@ -5,10 +5,14 @@
 	"main": "index.js",
 	"module": "commonjs",
 	"scripts": {
-		"test": "echo \"Running tests...\" && exit 0",
-		"serve": "nodemon src/index.js | pino-pretty",
+		"test": "playwright test",
+		"pretest": "playwright install --with-deps",
+		"test:ui": "playwright test --ui",
+		"test:codegen": "playwright codegen",
+		"serve": "nodemon --watch src src/index.js | pino-pretty",
 		"start": "node src/index.js",
 		"prepare": "husky || true",
+		"prelint": "pnpm biome check --write --files-ignore-unknown=true --no-errors-on-unmatched",
 		"lint": "prettier --check . --ignore-unknown && biome ci . --files-ignore-unknown=true --no-errors-on-unmatched"
 	},
 	"author": "8796155 Uzair Ahmed Syed",
@@ -32,6 +36,7 @@
 	},
 	"devDependencies": {
 		"@biomejs/biome": "1.8.3",
+		"@playwright/test": "^1.48.0",
 		"@types/node": "^22.7.5",
 		"husky": "^9.1.1",
 		"nodemon": "^2.0.15",
