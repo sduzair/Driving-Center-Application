@@ -225,6 +225,12 @@ app.post(
 	require("./controllers/userLogin"),
 );
 
+app.delete(
+	"/users/delete",
+	require("./middleware/userAuthentication"),
+	require("./controllers/userDelete"),
+);
+
 app.get("/logout", require("./controllers/userLogout"));
 
 app.get(
