@@ -5,3 +5,9 @@
 # vscode ide auto detects this as json and formats with biome extension which conflicts with prettier dep in cli
 .prettierrc
 pnpm-lock.yaml
+
+.vscode-test
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
