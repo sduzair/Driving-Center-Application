@@ -28,20 +28,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version-file: ".nvmrc"
-          cache: "pnpm"
-
-      - name: Get pnpm store directory
-        id: pnpm-cache
-        shell: bash
-        run: |
-          echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
-
-      - name: Setup pnpm cache
-        id: cache
-        uses: actions/cache@v4
-        with:
-          path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
-          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
 
       - name: Install dependencies if cache miss
         run: pnpm install --frozen-lockfile
@@ -53,17 +39,6 @@ jobs:
         run: pnpm start &
         env:
           SESS_SECRET: ${{ secrets.SESS_SECRET }}
-
-      - name: Get Playwright version
-        id: playwright-version
-        run: echo "version=$(pnpm ls @playwright/test | grep @playwright | sed 's/.*@//')" >> $GITHUB_OUTPUT
-
-      - name: Cache Playwright browsers
-        uses: actions/cache@v4
-        id: playwright-cache
-        with:
-          path: ~/.cache/ms-playwright
-          key: ${{ runner.os }}-playwright-${{ steps.playwright-version.outputs.version }}
 
       - name: Install browsers and Run e2e Tests
         run: pnpm test
