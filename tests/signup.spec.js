@@ -82,7 +82,11 @@ test.describe("Tests requiring accounts to be created in setup", () => {
 	);
 
 	test.afterEach("Delete created user", async ({ page, browserName }) => {
-		await loginAndDeleteUser(page, getUsername(browserName), password);
+		await loginAndDeleteUser(
+			page,
+			getUsername(username, browserName),
+			password,
+		);
 	});
 });
 
